@@ -4,12 +4,15 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.newtest0903.R;
 
@@ -51,11 +54,28 @@ public class ListFragment extends Fragment {
         //set newslist------------------------------------------------------
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 getActivity(), android.R.layout.simple_list_item_1, getData());
-        //    private HomeViewModel homeViewModel;
         ListView listView = (ListView) view.findViewById(R.id.newslist);
-//        ListView listView = (ListView) view.findViewById(R.id.listview);
         listView.setAdapter(arrayAdapter);
         //set newslist********************************************************
+        final SwipeRefreshLayout swiprefresh=view.findViewById(R.id.swiperefresh);
+        swiprefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //模拟网络请求需要3000毫秒，请求完成，设置setRefreshing 为false
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), "Refresh Finish!!",
+                                Toast.LENGTH_SHORT).show();
+                        swiprefresh.setRefreshing(false);
+                    }
+                }, 3000);
+            }
+        });
+        //set swiprefresh----------------------------------------------------
+
+
+        //set swiprefresh*****************************************************
 
         return view;
     }
