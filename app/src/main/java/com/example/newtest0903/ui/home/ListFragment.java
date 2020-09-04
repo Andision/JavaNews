@@ -1,5 +1,6 @@
 package com.example.newtest0903.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -10,11 +11,14 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.newtest0903.R;
+import com.example.newtest0903.news.NewsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +60,21 @@ public class ListFragment extends Fragment {
                 getActivity(), android.R.layout.simple_list_item_1, getData());
         ListView listView = (ListView) view.findViewById(R.id.newslist);
         listView.setAdapter(arrayAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Bundle bundle=new Bundle();
+                bundle.putInt("name",i);
+                Intent intent = new Intent();
+                intent.putExtras(bundle);
+                intent.setClass(getActivity(),NewsActivity.class);
+                startActivity(intent);
+
+            }
+        });
         //set newslist********************************************************
+
+        //set swiprefresh----------------------------------------------------
         final SwipeRefreshLayout swiprefresh=view.findViewById(R.id.swiperefresh);
         swiprefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -72,10 +90,24 @@ public class ListFragment extends Fragment {
                 }, 3000);
             }
         });
-        //set swiprefresh----------------------------------------------------
-
 
         //set swiprefresh*****************************************************
+
+
+//        //set btn test-----------
+//        Button button=view.findViewById(R.id.btnOpen);
+//        button.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                //textView.setText("Welcome!!");
+//                Intent intent = new Intent();
+//                intent.setClass(getActivity(),NewsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        //set btn test*************
 
         return view;
     }
@@ -87,6 +119,7 @@ public class ListFragment extends Fragment {
         }
         return data;
     }
+
 
 }
 

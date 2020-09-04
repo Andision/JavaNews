@@ -1,5 +1,6 @@
 package com.example.newtest0903.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -112,6 +113,7 @@ public class HomeFragment extends Fragment {
             return strings[position];
         }
     }
+
 
 
 }
