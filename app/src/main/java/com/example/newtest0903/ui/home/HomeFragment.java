@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        //set viewpager---------------------------------------------
         fragmentList.add(new ListFragment());
         fragmentList.add(new ListFragment());
         fragmentList.add(new ListFragment());
@@ -41,7 +42,7 @@ public class HomeFragment extends Fragment {
         MyAdapter fragmentAdapter = new  MyAdapter(getChildFragmentManager());
         viewPager.setAdapter(fragmentAdapter);
         tab_layout.setupWithViewPager(viewPager);
-
+        //set viewpager*********************************************
 
         return root;
     }

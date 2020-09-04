@@ -6,6 +6,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+    <androidx.appcompat.widget.SearchView
+            android:id="@+id/view_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iconifiedByDefault="false"
+            />
+
     <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
