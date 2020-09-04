@@ -4,6 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="?attr/actionBarSize"
         >
 <!--    tools:context=".ui.dashboard.DashboardFragment"-->
 
@@ -24,19 +25,31 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/swiperefresh"
-            >
+            tools:ignore="MissingConstraints">
 <!--        <ListView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="match_parent"-->
 <!--                android:id="@+id/listView"-->
 <!--                >-->
 <!--        </ListView>-->
-        <ListView
+
+
+
+
+
+<!--        <ListView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:id="@+id/newslist"></ListView>-->
+        <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/newslist"></ListView>
+                android:id="@+id/newslist"
+                android:scrollbars="vertical"
+                />
+
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
