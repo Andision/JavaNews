@@ -28,7 +28,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private List<Fragment> fragmentList = new ArrayList<Fragment>();
-    private String[] strings = new String[]{"A","B","C","D"};
+    private String[] strings = new String[]{"a","B","C","D"};
 
     SearchView searchView;
 
@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
         searchView=root.findViewById(R.id.view_search);
 //        searchView.setQueryHint("Search");
 //        searchView.setIconified(false);
-        searchView.setIconifiedByDefault(false);
+        searchView.setIconifiedByDefault(true);
 //        searchView.setFocusable(false);
 //        searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
