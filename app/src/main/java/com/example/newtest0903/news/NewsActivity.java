@@ -14,9 +14,10 @@ public class NewsActivity extends Activity{
         setContentView(R.layout.fragment_news);
 
         Bundle bundle=this.getIntent().getExtras();
-        int name=bundle.getInt("name");
+        int id=bundle.getInt("id");
+        String name=bundle.getString("name");
         TextView textView=findViewById(R.id.textview);
-        textView.setText("显示NEWS"+name);
+        textView.setText("显示NEWS"+id+':'+name);
 
     }
 

@@ -15,6 +15,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/fruitname"
             android:layout_gravity="center_vertical"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:paddingBottom="30px"/>
+<!--            android:background="#01DF01"-->
+
 
 </LinearLayout>
