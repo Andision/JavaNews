@@ -4,7 +4,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical">
+        android:orientation="vertical"
+
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+
+        >
 
     <SearchView
             android:id="@+id/view_search"
@@ -49,6 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="#E4E4E4"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             ></View>
 
     <androidx.viewpager.widget.ViewPager

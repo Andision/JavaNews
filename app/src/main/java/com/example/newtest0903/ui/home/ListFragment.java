@@ -22,7 +22,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.newtest0903.R;
-import com.example.newtest0903.news.NewsActivity;
+//import com.example.newtest0903.news.NewsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +33,23 @@ import java.util.List;
 public class ListFragment extends Fragment {
     private String mFrom;
     private List<Fruit> fruitList = new ArrayList<>();
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if (isVisibleToUser) {
+
+//            System.out.println("BACK");
+//            Toast.makeText(getContext(), "BBBBB",Toast.LENGTH_SHORT).show();
+            //相当于Fragment的onResume，为true时，Fragment已经可见
+        }
+//        else {
+//            Toast.makeText(getActivity(), "CCCCC",Toast.LENGTH_SHORT).show();
+//            //相当于Fragment的onPause，为false时，Fragment不可见
+//
+//        }
+    }
 
     public ListFragment() {
         // Required empty public constructor
@@ -85,7 +102,11 @@ public class ListFragment extends Fragment {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem == adapter.getItemCount() - 1) {
 //                    && mAdapter.isShowFooter() && !mPresenter.isLoading()
-//                mPresenter.requireMoreNews();
+
+
+                    adapter.appendNewsList();
+                    adapter.notifyDataSetChanged();
+
                     Toast.makeText(getActivity(), "SCROLL"+lastVisibleItem+"Total"+adapter.getItemCount(),Toast.LENGTH_SHORT).show();
                 }
 
@@ -192,6 +213,7 @@ public class ListFragment extends Fragment {
 
         }
     }
+
 }
 //
 //    private List<String> getData(){

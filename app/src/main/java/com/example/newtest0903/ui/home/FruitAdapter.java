@@ -139,4 +139,11 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
     public int getItemCount() {
         return mFruitList.size();
     }
+
+    public void appendNewsList() {
+        for (int i = 0; i < 3; i++) {
+            Fruit apple = new Fruit("NNN");
+            mFruitList.add(apple);
+        }
+    }
 }

@@ -30,6 +30,8 @@ public class HomeFragment extends Fragment {
     private List<Fragment> fragmentList = new ArrayList<Fragment>();
     private String[] strings = new String[]{"A","B","C","D"};
 
+    SearchView searchView;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -53,10 +55,12 @@ public class HomeFragment extends Fragment {
 
 
         //set SearchView--------------------------------------------
-        SearchView searchView=root.findViewById(R.id.view_search);
+        searchView=root.findViewById(R.id.view_search);
 //        searchView.setQueryHint("Search");
 //        searchView.setIconified(false);
         searchView.setIconifiedByDefault(false);
+//        searchView.setFocusable(false);
+//        searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             //单机搜索按钮时激发该方法
             @Override
@@ -64,6 +68,7 @@ public class HomeFragment extends Fragment {
                 //实际应用中应该在该方法内执行实际查询，此处仅使用Toast显示用户输入的查询内容
                 Toast.makeText(getActivity(), "Your Input: " + query,
                         Toast.LENGTH_SHORT).show();
+                searchView.clearFocus();
                 return false;
             }
 
