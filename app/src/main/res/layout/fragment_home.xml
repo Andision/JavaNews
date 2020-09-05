@@ -38,10 +38,10 @@
 
 
             <Button
-            android:id="@+id/btnOpen"
+            android:id="@+id/button_tabedit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="打开新页面"
+            android:text="编辑"
             tools:ignore="MissingConstraints" />
     </LinearLayout>
 

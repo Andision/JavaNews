@@ -34,6 +34,9 @@
         <activity android:name="com.example.newtest0903.news.NewsActivity">
         </activity>
 
+        <activity android:name="com.example.newtest0903.ui.home.TabEditActivity">
+        </activity>
+
 
 
     </application>

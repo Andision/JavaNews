@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.newtest0903.R;
+import com.example.newtest0903.news.NewsActivity;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -84,7 +86,21 @@ public class HomeFragment extends Fragment {
         //set SearchView**********************************************
 
 
+        //set TabEditButton--------------------------------------------
+        Button tabEditButton=root.findViewById(R.id.button_tabedit);
+        tabEditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "TABEDITBTN", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), TabEditActivity.class);
+//                startActivity(intent);
+                startActivity(intent);
+            }
+        });
 
+
+        //set TabEditButton********************************************
 
 
 
