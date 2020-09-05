@@ -1,5 +1,7 @@
 package com.example.newtest0903.ui.home;
 
+import android.webkit.JavascriptInterface;
+
 public class Fruit {
 
     private String name;
@@ -9,6 +11,7 @@ public class Fruit {
 
     }
 
+    @JavascriptInterface
     public String getName() {
         return name;
     }
