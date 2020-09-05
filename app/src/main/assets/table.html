@@ -1,0 +1,186 @@
+<style type="text/css">
+    .china-div{
+        padding-top: 50px;
+    }
+
+    table {
+        position: relative;
+        *border-collapse: collapse; /* IE7 and lower */
+        border-spacing: 0;
+        width: 100%;
+        margin-top: 60px;
+        /* top: 60px; */
+    }
+    /*========bordered table========*/
+    .bordered {
+        border: solid #ccc 1px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+        -webkit-box-shadow: 0 1px 1px #ccc;
+        -moz-box-shadow: 0 1px 1px #ccc;
+        box-shadow: 0 1px 1px #ccc;
+    }
+
+    .bordered tr {
+        -o-transition: all 0.1s ease-in-out;
+        -webkit-transition: all 0.1s ease-in-out;
+        -moz-transition: all 0.1s ease-in-out;
+        -ms-transition: all 0.1s ease-in-out;
+        transition: all 0.1s ease-in-out;		
+    }
+    .bordered .highlight,
+    /* .bordered tr:hover {
+        background: #fbf8e9;		
+    } */
+    .bordered td, 
+    .bordered th {
+        border-left: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+    .bordered th {
+        background-color: #dce9f9;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+        background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+        background-image: -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+        background-image: -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+        background-image: -o-linear-gradient(top, #ebf3fc, #dce9f9);
+        background-image: linear-gradient(top, #ebf3fc, #dce9f9);
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ebf3fc, endColorstr=#dce9f9);
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#ebf3fc, endColorstr=#dce9f9)";
+        -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+        -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;
+        box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+        border-top: none;
+        text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    }
+    
+
+
+
+
+    .nav_div { 
+        font:12px verdana, arial, sans-serif; /* 设置文字大小和字体样式 */
+        height: 50px;
+        position:fixed;
+        top:0px;
+        left:0px;
+    }
+
+    .nav{
+        position:fixed;
+        top:0px;
+        /* left:0px; */
+    }
+
+    .nav li{
+        list-style:none; /* 将默认的列表符号去掉 */
+        padding:0; /* 将默认的内边距去掉 */
+        margin:0; /* 将默认的外边距去掉 */
+        width: 50%;
+        text-align: center;
+        
+
+        float:left;
+    }
+    </style>
+
+
+<div id="china-div">
+<table class="bordered" id="china">
+    <thead>
+      <tr>
+          <th>#</th>        
+          <th>IMDB Top 10 Movies</th>
+          <th>Year</th>
+      </tr>
+    </thead>
+    <tbody id="tbody-china">
+          <tr>
+        <td>1</td>        
+        <td>The Shawshank Redemption</td>
+         <td>1994</td>
+      </tr>        
+      <tr>
+          <td>2</td>         
+          <td>The Godfather</td>
+          <td>1972</td>
+      </tr>
+      <tr>
+          <td>3</td>         
+          <td>The Godfather: Part II</td>
+          <td>1974</td>
+      </tr>    
+      <tr>
+          <td>4</td> 
+          <td>The Good, the Bad and the Ugly</td>
+          <td>1966</td>
+      </tr>		    
+      </tbody>
+  </table>
+</div>
+
+
+  <table class="bordered" id="world">
+    <thead>
+      <tr>
+          <th>#</th>        
+          <th>IMDB Top 10 Movies</th>
+          <th>Year</th>
+      </tr>
+    </thead>
+    <tbody id="tbody-world">
+          <tr>
+        <td>1</td>        
+        <td>The Shawshank Redemption</td>
+         <td>1994</td>
+      </tr>        
+      <tr>
+          <td>2</td>         
+          <td>The Godfather</td>
+          <td>1972</td>
+      </tr>
+      <tr>
+          <td>3</td>         
+          <td>The Godfather: Part II</td>
+          <td>1974</td>
+      </tr>    
+      <tr>
+          <td>4</td> 
+          <td>The Good, the Bad and the Ugly</td>
+          <td>1966</td>
+      </tr>		    
+      </tbody>
+  </table>
+
+  <!-- <div id="nav_div">
+    <ul class="nav clearfix" id="nav">
+        <li ><a href="#china-div">疫情地图</a></li>
+        <li ><a href="#world">实时动态</a></li>
+    </ul>
+</div> -->
+
+
+  <script>
+    function settable() {
+
+        var data = "";
+
+        for (var i = 1; i <= 50; i++) {
+            data += "<tr>";
+            data += "<td>" + i + "</td>";
+            data += "<td>Line No."+i+"</td>";
+            data += "<td>"+(i+2000)+"</td>";
+            data += "</tr>";
+        }
+
+
+        document.getElementById("tbody-china").innerHTML = data;
+        document.getElementById("tbody-world").innerHTML = data;
+        
+    }
+
+    window.onload = settable;
+</script>

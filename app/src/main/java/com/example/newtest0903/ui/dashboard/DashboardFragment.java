@@ -37,7 +37,7 @@ public class DashboardFragment extends Fragment {
             }
         });
 //        webView.loadUrl("http://andision.xyz");
-        webView.loadUrl("file:///android_asset/index.html");
+        webView.loadUrl("file:///android_asset/table.html");
         return root;
     }
 }
