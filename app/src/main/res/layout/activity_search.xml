@@ -6,8 +6,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
 
-        android:focusable="true"
-        android:focusableInTouchMode="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
 
         >
 
@@ -16,6 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:queryHint="Search"
+            android:iconifiedByDefault="false"
+            android:focusedByDefault="true"
+            android:defaultFocusHighlightEnabled="true"
             />
 
     <androidx.recyclerview.widget.RecyclerView

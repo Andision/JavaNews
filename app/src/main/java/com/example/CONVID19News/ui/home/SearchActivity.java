@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,39 @@ public class SearchActivity extends Activity {
 
         final SearchHistoryAdapter adapter = new SearchHistoryAdapter(fruitList);
         recyclerView.setAdapter(adapter);
+
+
+        SearchView searchView=findViewById(R.id.view_search);
+//        searchView.setQueryHint("Search");
+//        searchView.setIconified(false);
+        searchView.setIconifiedByDefault(false);
+        searchView.setFocusable(true);
+//        searchView.setFocusable(false);
+//        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            //单机搜索按钮时激发该方法
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //实际应用中应该在该方法内执行实际查询，此处仅使用Toast显示用户输入的查询内容
+//                Toast.makeText(getActivity(), "Your Input: " + query,Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            //用户输入字符时激发该方法
+            @Override
+            public boolean onQueryTextChange(String newText) {
+//                //如果newText不是长度为0的字符串
+//                if (TextUtils.isEmpty(newText)) {
+//                    //清除ListView的过滤
+//                    listView.clearTextFilter();
+//                } else {
+//                    //使用用户输入的内容对ListView的列表项进行过滤
+//                    listView.setFilterText(newText);
+//                }
+                return true;
+            }
+        });
+
 
     }
 
