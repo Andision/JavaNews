@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+
+        >
+
+    <SearchView
+            android:id="@+id/view_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="Search"
+            />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/list_searchhistroy"
+            android:scrollbars="vertical"
+            />
+
+<!--    <LinearLayout-->
+<!--            xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--            xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
+<!--        <com.google.android.material.tabs.TabLayout-->
+<!--                android:id="@+id/tab_layout"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                app:tabGravity="fill"-->
+<!--                app:tabMaxWidth="0dp"-->
+<!--                app:tabIndicatorColor="@color/colorAccent"-->
+<!--                app:tabSelectedTextColor="@color/colorPrimary"-->
+<!--                app:tabTextColor="@color/colorPrimary"-->
+<!--                app:tabIndicatorFullWidth="false"-->
+<!--                >-->
+
+<!--        </com.google.android.material.tabs.TabLayout>-->
+
+
+<!--        <Button-->
+<!--                android:id="@+id/button_tabedit"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="编辑"-->
+<!--                tools:ignore="MissingConstraints" />-->
+<!--    </LinearLayout>-->
+
+<!--    <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0.5dp"-->
+<!--            android:background="#E4E4E4"-->
+<!--            android:focusable="true"-->
+<!--            android:focusableInTouchMode="true"-->
+<!--            ></View>-->
+
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--            android:id="@+id/vp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" >-->
+
+<!--    </androidx.viewpager.widget.ViewPager>-->
+
+
+
+</LinearLayout>

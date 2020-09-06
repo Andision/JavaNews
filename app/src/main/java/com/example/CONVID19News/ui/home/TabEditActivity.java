@@ -9,8 +9,6 @@ import android.widget.TextView;
 import com.example.CONVID19News.R;
 import com.google.android.flexbox.FlexboxLayout;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.example.CONVID19News.myData;
@@ -29,7 +27,7 @@ public class TabEditActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_tabedit);
+        setContentView(R.layout.activity_tabedit);
 
         initView();
         initLabelData();

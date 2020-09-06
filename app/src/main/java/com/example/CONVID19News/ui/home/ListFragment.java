@@ -30,23 +30,6 @@ public class ListFragment extends Fragment {
 
     String test;
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-
-        if (isVisibleToUser) {
-
-//            System.out.println("BACK");
-//            Toast.makeText(getContext(), "BBBBB",Toast.LENGTH_SHORT).show();
-            //相当于Fragment的onResume，为true时，Fragment已经可见
-        }
-//        else {
-//            Toast.makeText(getActivity(), "CCCCC",Toast.LENGTH_SHORT).show();
-//            //相当于Fragment的onPause，为false时，Fragment不可见
-//
-//        }
-    }
-
     public ListFragment() {
         // Required empty public constructor
     }

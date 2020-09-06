@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,7 +32,6 @@ public class HomeFragment extends Fragment {
     private List<Fragment> fragmentList = new ArrayList<Fragment>();
 //    private static String[] strings = new String[]{"A","B","C","D"};
     private static String[] strings =myData.getTabStrings().toArray(new String[myData.getTabStrings().size()]);
-    SearchView searchView;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -62,37 +62,51 @@ public class HomeFragment extends Fragment {
 
 
         //set SearchView--------------------------------------------
-        searchView=root.findViewById(R.id.view_search);
-//        searchView.setQueryHint("Search");
-//        searchView.setIconified(false);
-        searchView.setIconifiedByDefault(true);
-//        searchView.setFocusable(false);
-//        searchView.clearFocus();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            //单机搜索按钮时激发该方法
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                //实际应用中应该在该方法内执行实际查询，此处仅使用Toast显示用户输入的查询内容
-                Toast.makeText(getActivity(), "Your Input: " + query,
-                        Toast.LENGTH_SHORT).show();
-                searchView.clearFocus();
-                return false;
-            }
 
-            //用户输入字符时激发该方法
+        TextView textView=root.findViewById(R.id.view_search);
+        textView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onQueryTextChange(String newText) {
-//                //如果newText不是长度为0的字符串
-//                if (TextUtils.isEmpty(newText)) {
-//                    //清除ListView的过滤
-//                    listView.clearTextFilter();
-//                } else {
-//                    //使用用户输入的内容对ListView的列表项进行过滤
-//                    listView.setFilterText(newText);
-//                }
-                return true;
+            public void onClick(View view) {
+//                Toast.makeText(getActivity(), "实现点击TextView事件", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), SearchActivity.class);
+                startActivity(intent);
+//                startActivityForResult(intent,100);
             }
         });
+
+
+//        searchView=root.findViewById(R.id.view_search);
+////        searchView.setQueryHint("Search");
+////        searchView.setIconified(false);
+//        searchView.setIconifiedByDefault(true);
+////        searchView.setFocusable(false);
+////        searchView.clearFocus();
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            //单机搜索按钮时激发该方法
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                //实际应用中应该在该方法内执行实际查询，此处仅使用Toast显示用户输入的查询内容
+//                Toast.makeText(getActivity(), "Your Input: " + query,Toast.LENGTH_SHORT).show();
+//                searchView.clearFocus();
+//                return false;
+//            }
+//
+//            //用户输入字符时激发该方法
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+////                //如果newText不是长度为0的字符串
+////                if (TextUtils.isEmpty(newText)) {
+////                    //清除ListView的过滤
+////                    listView.clearTextFilter();
+////                } else {
+////                    //使用用户输入的内容对ListView的列表项进行过滤
+////                    listView.setFilterText(newText);
+////                }
+//                return true;
+//            }
+//        });
 
 
         //set SearchView**********************************************
@@ -103,7 +117,7 @@ public class HomeFragment extends Fragment {
         tabEditButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "TABEDITBTN", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity(), "TABEDITBTN", Toast.LENGTH_LONG).show();
 
 //                tab_layout.removeTabAt(1);
 //                fragmentList.remove(1);

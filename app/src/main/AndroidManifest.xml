@@ -37,6 +37,9 @@
         <activity android:name="com.example.CONVID19News.ui.home.TabEditActivity">
         </activity>
 
+        <activity android:name="com.example.CONVID19News.ui.home.SearchActivity">
+        </activity>
+
 
 
     </application>
