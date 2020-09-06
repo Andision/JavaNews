@@ -1,4 +1,4 @@
-package com.example.newtest0903.ui.notifications;
+package com.example.CONVID19News.ui.notifications;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

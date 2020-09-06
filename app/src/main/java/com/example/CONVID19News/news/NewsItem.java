@@ -1,4 +1,4 @@
-package com.example.newtest0903.news;
+package com.example.CONVID19News.news;
 
 import android.webkit.JavascriptInterface;
 

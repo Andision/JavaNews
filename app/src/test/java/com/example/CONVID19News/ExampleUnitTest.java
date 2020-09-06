@@ -1,4 +1,4 @@
-package com.example.newtest0903;
+package com.example.CONVID19News;
 
 import org.junit.Test;
 

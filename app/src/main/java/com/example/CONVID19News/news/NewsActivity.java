@@ -1,13 +1,11 @@
-package com.example.newtest0903.news;
+package com.example.CONVID19News.news;
 
 import android.app.Activity;
-import android.app.Person;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
 
-import com.example.newtest0903.R;
+import com.example.CONVID19News.R;
 
 public class NewsActivity extends Activity{
 

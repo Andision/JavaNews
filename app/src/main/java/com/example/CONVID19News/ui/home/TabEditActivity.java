@@ -1,16 +1,12 @@
-package com.example.newtest0903.ui.home;
+package com.example.CONVID19News.ui.home;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.newtest0903.R;
-import com.example.newtest0903.news.NewsItem;
+import com.example.CONVID19News.R;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.newtest0903.ui.home;
+package com.example.CONVID19News.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import com.example.newtest0903.R;
-import com.example.newtest0903.news.NewsActivity;
+import com.example.CONVID19News.R;
+import com.example.CONVID19News.news.NewsActivity;
 
 public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> {
 

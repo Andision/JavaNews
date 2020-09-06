@@ -1,4 +1,4 @@
-package com.example.newtest0903.ui.home;
+package com.example.CONVID19News.ui.home;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -9,8 +9,6 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.google.android.flexbox.FlexboxLayout;
-
-import com.example.newtest0903.R;
 
 
 /**

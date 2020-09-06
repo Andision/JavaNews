@@ -1,4 +1,4 @@
-package com.example.newtest0903.ui.dashboard;
+package com.example.CONVID19News.ui.dashboard;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

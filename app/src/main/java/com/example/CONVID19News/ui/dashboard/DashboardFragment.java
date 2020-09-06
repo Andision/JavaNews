@@ -1,4 +1,4 @@
-package com.example.newtest0903.ui.dashboard;
+package com.example.CONVID19News.ui.dashboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,15 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
-import com.example.newtest0903.R;
+import com.example.CONVID19News.R;
 
 public class DashboardFragment extends Fragment {
 
