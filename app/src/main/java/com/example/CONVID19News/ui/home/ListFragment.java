@@ -28,6 +28,8 @@ public class ListFragment extends Fragment {
     private String mFrom;
     private List<Fruit> fruitList = new ArrayList<>();
 
+    String test;
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -47,6 +49,11 @@ public class ListFragment extends Fragment {
 
     public ListFragment() {
         // Required empty public constructor
+    }
+
+    public ListFragment(String t) {
+        // Required empty public constructor
+        test=t;
     }
 
     public static Fragment newInstance(String from){
@@ -183,6 +190,8 @@ public class ListFragment extends Fragment {
     }
 
     private void initFruits() {
+        Fruit aaa = new Fruit(test);
+        fruitList.add(aaa);
         for (int i = 0; i < 3; i++) {
             Fruit apple = new Fruit("Apple");
             fruitList.add(apple);

@@ -14,20 +14,25 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.CONVID19News.R;
+import com.example.CONVID19News.myData;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class HomeFragment extends Fragment {
 
     private List<Fragment> fragmentList = new ArrayList<Fragment>();
-    private String[] strings = new String[]{"a","B","C","D"};
-
+//    private static String[] strings = new String[]{"A","B","C","D"};
+    private static String[] strings =myData.getTabStrings().toArray(new String[myData.getTabStrings().size()]);
     SearchView searchView;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,15 +40,20 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         //set viewpager---------------------------------------------
-        fragmentList.add(new ListFragment());
-        fragmentList.add(new ListFragment());
-        fragmentList.add(new ListFragment());
-        fragmentList.add(new ListFragment());
+//        fragmentList.add(new ListFragment("1"));
+//        fragmentList.add(new ListFragment("2"));
+//        fragmentList.add(new ListFragment("3"));
+//        fragmentList.add(new ListFragment("4"));
+        strings =myData.getTabStrings().toArray(new String[myData.getTabStrings().size()]);
+        for(int i=0;i<strings.length;i++){
+            fragmentList.add(new ListFragment(strings[i]));
+        }
 
-        TabLayout tab_layout = root.findViewById(R.id.tab_layout);
         ViewPager viewPager = root.findViewById(R.id.vp);
-        MyFragmentAdapter fragmentAdapter = new MyFragmentAdapter(getChildFragmentManager());
+        final MyFragmentAdapter fragmentAdapter = new MyFragmentAdapter(getChildFragmentManager());
         viewPager.setAdapter(fragmentAdapter);
+
+        final TabLayout tab_layout = root.findViewById(R.id.tab_layout);
         tab_layout.setupWithViewPager(viewPager);
         //set viewpager*********************************************
 
@@ -94,10 +104,20 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "TABEDITBTN", Toast.LENGTH_LONG).show();
+
+//                tab_layout.removeTabAt(1);
+//                fragmentList.remove(1);
+//                fragmentAdapter.notifyDataSetChanged();
+//                tab_layout.removeTabAt(1);
+//                System.out.println(tab_layout.getScrollBarSize());
+//                myData.deleteTabStringsItem(1);
+
+
+
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), TabEditActivity.class);
 //                startActivity(intent);
-                startActivity(intent);
+                startActivityForResult(intent,100);
             }
         });
 
@@ -110,14 +130,16 @@ public class HomeFragment extends Fragment {
     }
 
 
-    public class MyFragmentAdapter extends FragmentPagerAdapter {
+    public class MyFragmentAdapter extends FragmentStatePagerAdapter {
+        private long baseId = 0;
+
         public MyFragmentAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public int getCount() {
-            return 4;
+            return strings.length;
         }
 
         @Override
@@ -130,6 +152,19 @@ public class HomeFragment extends Fragment {
         public CharSequence getPageTitle(int position) {
             return strings[position];
         }
+
+
+//        @Override
+//        public int getItemPosition(Object object) {
+//            // refresh all fragments when data set changed
+//            return PagerAdapter.POSITION_NONE;
+//        }
+
+//        @Override
+//        public void destroyItem(ViewGroup container, int position, Object object) {
+//            ((ViewPager)container).removeView( (View) object);
+//        }
+
     }
 
 

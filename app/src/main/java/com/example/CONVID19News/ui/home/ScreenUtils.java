@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.google.android.flexbox.FlexboxLayout;
 
+import com.example.CONVID19News.R;
+
 
 /**
  * Created by Administrator on 2019/5/15.
@@ -65,11 +67,12 @@ public class ScreenUtils {
         if (selected) {
             textView.setText(content + " ×");
 //            textView.setTextColor(context.getResources().getColor(R.color.btn_text_color));
-//            textView.setBackgroundResource(R.drawable.corner_13_bg);
+            textView.setBackgroundResource(R.drawable.corner_13_bg);
         } else {
             textView.setText(content);
 //            textView.setTextColor(context.getResources().getColor(R.color.normal_text_color));
 //            textView.setBackgroundResource(R.drawable.corner_13_light_black_bg);
+            textView.setBackgroundResource(R.drawable.corner_13_bg);
         }
 
 //        if (addItem) {

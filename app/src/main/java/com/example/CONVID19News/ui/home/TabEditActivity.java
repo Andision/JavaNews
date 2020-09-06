@@ -13,10 +13,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.example.CONVID19News.myData;
+
+
 public class TabEditActivity extends Activity{
 
-    private List<String> labelData = new ArrayList(Arrays.asList("十年爱情长跑", "羡慕", "嫉妒", "柠檬酸", "祝福", "长长久久", "早生贵子", "幸福美满"));
-    private List<String> selectLabelData = new ArrayList();
+//    private List<String> labelData = new ArrayList(Arrays.asList("十年爱情长跑", "羡慕", "嫉妒", "柠檬酸", "祝福", "长长久久", "早生贵子", "幸福美满"));
+//    private List<String> selectLabelData = new ArrayList(Arrays.asList("十年爱情长跑"));
+    private List<String> labelData = myData.getUnactiveTabStrings();
+    private List<String> selectLabelData= myData.getTabStrings();
     private FlexboxLayout unSelectedFlexLayout ;
     private FlexboxLayout selectedFlexLayout;
     private EditText editLabelET;
