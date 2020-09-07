@@ -1,9 +1,16 @@
 package com.example.CONVID19News.ui.home;
 
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -65,6 +72,7 @@ public class ListFragment extends Fragment {
         initFruits();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.newslist);
         recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new SimplePaddingDecoration(getActivity()));
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -212,4 +220,24 @@ public class ListFragment extends Fragment {
 
 
 
+class SimplePaddingDecoration extends RecyclerView.ItemDecoration {
 
+    private int dividerHeight;
+
+
+    public SimplePaddingDecoration(Context context) {
+        dividerHeight = 50;
+    }
+
+    @Override
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        super.getItemOffsets(outRect, view, parent, state);
+        outRect.bottom = dividerHeight;//类似加了一个bottom padding
+    }
+
+    @Override
+    public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+        super.onDraw(c, parent, state);
+
+    }
+}

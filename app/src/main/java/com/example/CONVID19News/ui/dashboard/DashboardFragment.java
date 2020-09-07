@@ -20,20 +20,20 @@ public class DashboardFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        WebView webView=root.findViewById(R.id.webView);
-
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setBlockNetworkImage(false);
-
-        webView.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
-        });
-//        webView.loadUrl("http://andision.xyz");
-        webView.loadUrl("file:///android_asset/table.html");
+//        WebView webView=root.findViewById(R.id.webView);
+//
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.getSettings().setBlockNetworkImage(false);
+//
+//        webView.setWebViewClient(new WebViewClient(){
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                view.loadUrl(url);
+//                return true;
+//            }
+//        });
+////        webView.loadUrl("http://andision.xyz");
+//        webView.loadUrl("file:///android_asset/table.html");
         return root;
     }
 }

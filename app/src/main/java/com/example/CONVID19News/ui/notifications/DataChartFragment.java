@@ -63,7 +63,7 @@ public class DataChartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_datachart, container, false);
+        final View view = inflater.inflate(R.layout.fragment_datachart, container, false);
 
         //set chart--------------------------------------------
         mLineChart = view.findViewById(R.id.line_chart);
@@ -122,16 +122,25 @@ public class DataChartFragment extends Fragment {
 
 
         TableData<User> tableData = new TableData<>("表格名", list, city, name, count, restaurant, ka, wholesale, industry, other);
-
-//设置数据
         smartTable = view.findViewById(R.id.table);
         smartTable.setTableData(tableData);
         smartTable.getConfig().setShowTableTitle(false);
         smartTable.getConfig().setShowXSequence(false);
         smartTable.getConfig().setShowYSequence(false);
+        tableData.setOnItemClickListener(new TableData.OnItemClickListener() {
+            @Override
+            public void onClick(Column column, String value, Object o, int col, int row) {
+                Toast.makeText(getActivity(), "X:"+col+",Y:"+row, Toast.LENGTH_SHORT).show();
+                mChartManager = new LineChartManager(mLineChart,"sensors", Color.BLACK);
+                mChartManager.setDescription("");
+
+                for(int i=0;i<15;i++){
+                    addEntry(view);
+                }
+            }
+        });
 
         //set table-------------------------------------------------
-
 
 
         //set table**************************************************
@@ -263,6 +272,15 @@ class LineChartManager {
         lineChart.setData(lineData);
         lineChart.invalidate();
     }
+
+//    public void Ads() {
+//        timeList=new ArrayList<>();
+//        addEntry(35);
+//        addEntry(45);
+//        addEntry(55);
+//        lineData.notifyDataChanged();
+//        lineChart.notifyDataSetChanged();
+//    }
 
     /**
      * 动态添加数据（一条折线图）
