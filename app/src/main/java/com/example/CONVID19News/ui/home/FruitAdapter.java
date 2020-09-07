@@ -144,4 +144,11 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
             mFruitList.add(apple);
         }
     }
+
+    public void appendNewsListFirst() {
+        for (int i = 0; i < 3; i++) {
+            Fruit apple = new Fruit("NNN");
+            mFruitList.add(0,apple);
+        }
+    }
 }

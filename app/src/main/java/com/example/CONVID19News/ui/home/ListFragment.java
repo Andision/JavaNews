@@ -153,6 +153,14 @@ public class ListFragment extends Fragment {
                     public void run() {
                         Toast.makeText(getActivity(), "Refresh Finish!!",
                                 Toast.LENGTH_SHORT).show();
+
+
+                        adapter.appendNewsListFirst();
+                        adapter.notifyDataSetChanged();
+
+
+
+
                         swiprefresh.setRefreshing(false);
                     }
                 }, 3000);
