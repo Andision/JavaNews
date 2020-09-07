@@ -35,6 +35,9 @@ dependencies {
     implementation 'androidx.viewpager:viewpager:1.0.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.huangyanbin:SmartTable:2.2.0'
+
 //    implementation'com.google.android:flexbox:0.3.0-alpha2'//流式布局
     implementation 'com.google.android:flexbox:2.0.1'
 

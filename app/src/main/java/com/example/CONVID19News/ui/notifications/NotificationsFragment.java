@@ -30,7 +30,7 @@ public class NotificationsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
 
         //set viewpager---------------------------------------------
-        fragmentList.add(new ListFragment());
+        fragmentList.add(new DataChartFragment());
         fragmentList.add(new ListFragment());
         fragmentList.add(new ListFragment());
         fragmentList.add(new ListFragment());
