@@ -93,8 +93,10 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
                 public void onClick(View view) {
                     Toast.makeText(holder.fruitName.getContext(), "我被点击了", Toast.LENGTH_SHORT).show();
                     Bundle bundle=new Bundle();
-                    bundle.putInt("id",position);
-                    bundle.putString("name",mFruitList.get(position).getName());
+                    bundle.putString("title",mFruitList.get(position).getTitle());
+                    bundle.putString("date",mFruitList.get(position).getDate());
+                    bundle.putString("from",mFruitList.get(position).getFrom());
+                    bundle.putString("content",mFruitList.get(position).getContent());
                     Intent intent = new Intent();
                     intent.putExtras(bundle);
                     intent.setClass(holder.fruitName.getContext(), NewsActivity.class);

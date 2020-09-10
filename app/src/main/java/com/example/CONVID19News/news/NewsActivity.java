@@ -42,14 +42,17 @@ public class NewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
 
+        Bundle bundle=this.getIntent().getExtras();
+
         TextView news_title = findViewById(R.id.news_title);
-        news_title.setText("显示NEWS_TITLE");
+//        news_title.setText("显示NEWS_TITLE");
+        news_title.setText(bundle.getString("title"));
 
         TextView news_info = findViewById(R.id.news_info);
-        news_info.setText("显示NEWS_INFO");
+        news_info.setText(bundle.getString("date")+"    "+bundle.getString("from"));
 
         TextView news_text = findViewById(R.id.news_text);
-        news_text.setText("显示NEWS_TEXT");
+        news_text.setText(bundle.getString("content"));
 
 
 //        ActionBar actionBar=getSupportActionBar();

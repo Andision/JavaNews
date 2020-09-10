@@ -11,7 +11,16 @@ import android.view.Window;
 
 import com.example.CONVID19News.MainActivity;
 import com.example.CONVID19News.R;
+import com.example.CONVID19News.bean.NewslistModel;
 import com.example.CONVID19News.database.DatabaseHelper;
+import com.example.CONVID19News.http.Url;
+import com.example.CONVID19News.http.httpurl;
+import com.example.CONVID19News.http.json.NewsListJson;
+
+import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SplashActivity extends Activity {
 
@@ -25,17 +34,47 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
 
         SQLiteOpenHelper dbHelper = new DatabaseHelper(this,"mydatabase",null,1);
-        SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
+        final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
 
-        for(int i=0;i<20;i++){
+        new Thread(){
+            @Override
+            public void run() {
+//线程要执行的任务
+                super.run();
+                //新闻列表
+                Url tt = new Url();
+                String x = tt.getUrl("news", 1);
+                httpurl xx = new httpurl();
+                String data = xx.pub(x);
+                List<NewslistModel> newslist = new ArrayList<NewslistModel>();
+                NewsListJson cc = new NewsListJson();
+                try {
+                    newslist = cc.jxNewslist(data);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < newslist.size(); i++) {
+                    NewslistModel newsInsert=newslist.get(i);
+//                    System.out.println(newslist.get(i).toString());
+                    ContentValues values = new ContentValues();
+                    values.put("title", newsInsert.getTitle());
+                    values.put("date", newsInsert.getDate());
+                    values.put("ffrom", newsInsert.getFrom());
+                    values.put("content", newsInsert.getContent());
+                    sqliteDatabase.insert("news", null, values);
+                }
+            }
+        }.start();
 
-            ContentValues values = new ContentValues();
-            values.put("title", "title"+i);
-            values.put("date", "date"+i);
-            values.put("ffrom", "from"+i);
-            values.put("content", "content"+i);
-            sqliteDatabase.insert("news", null, values);
-        }
+//        for(int i=0;i<20;i++){
+//
+//            ContentValues values = new ContentValues();
+//            values.put("title", "title"+i);
+//            values.put("date", "date"+i);
+//            values.put("ffrom", "from"+i);
+//            values.put("content", "content"+i);
+//            sqliteDatabase.insert("news", null, values);
+//        }
 
         Intent intent = new Intent(this, MainActivity.class);	//第二个参数即为执行完跳转后的Activity
         startActivity(intent);
