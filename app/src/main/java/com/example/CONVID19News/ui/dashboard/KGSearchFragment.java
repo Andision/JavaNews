@@ -27,6 +27,8 @@ import com.example.CONVID19News.http.json.PaperListJson;
 import com.example.CONVID19News.myData;
 import com.example.CONVID19News.ui.home.Fruit;
 import com.example.CONVID19News.ui.home.FruitAdapter;
+import com.example.CONVID19News.ui.notifications.KGEntity;
+import com.example.CONVID19News.ui.notifications.KGEntityAdapter;
 
 import org.json.JSONException;
 
@@ -34,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KGSearchFragment extends Fragment{
-    private List<Fruit> fruitList = new ArrayList<>();
+    private List<KGEntity> fruitList = new ArrayList<>();
 
     String myType;
 
@@ -54,19 +56,18 @@ public class KGSearchFragment extends Fragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_kgsearch, container, false);
 
-//        //set newslist------------------------------------------------------
-//        initFruits();
-//        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.newslist);
-//        recyclerView.setHasFixedSize(true);
-////        recyclerView.addItemDecoration(new SimplePaddingDecoration(getActivity()));
-//
-//        final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-//        recyclerView.setLayoutManager(layoutManager);
-//
+        //set newslist------------------------------------------------------
+        initFruits();
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.entitylist);
+        recyclerView.setHasFixedSize(true);
+
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+
 //        SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(), "mydatabase", null, 1);
 //        final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
-//        final FruitAdapter adapter = new FruitAdapter(fruitList, sqliteDatabase, myType);
-//        recyclerView.setAdapter(adapter);
+        final KGEntityAdapter adapter = new KGEntityAdapter(fruitList);
+        recyclerView.setAdapter(adapter);
 //
 //        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 //            private int lastVisibleItem;
@@ -164,60 +165,11 @@ public class KGSearchFragment extends Fragment{
     }
 
     private void initFruits() {
-//        Fruit aaa = new Fruit(test);
-//        fruitList.add(aaa);
-
-
-        SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(), "mydatabase", null, 1);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        Cursor result;
-
-        if (myType == "NEWS") {
-            result = db.rawQuery("select * from news", new String[]{});
-        } else {
-            result = db.rawQuery("select * from paper", new String[]{});
+        for(int i=0;i<10;i++){
+            KGEntity kge=new KGEntity("KGE:"+i);
+            fruitList.add(kge);
         }
 
-
-        result.moveToLast();
-        while (!result.isBeforeFirst()) {
-            int id = result.getInt(0);
-            String title = result.getString(1);
-            String date = result.getString(2);
-            String ffrom = result.getString(3);
-            String ccontent = result.getString(4);
-//            System.out.println(title+date+ffrom);
-            // do something useful with these
-            Fruit myInsert = new Fruit(title, date, ffrom, ccontent, result.getInt(5));
-            fruitList.add(myInsert);
-
-            result.moveToPrevious();
-        }
-        result.close();
-//        for (int i = 0; i < 3; i++) {
-//            Fruit apple = new Fruit("Apple");
-//            fruitList.add(apple);
-//            Fruit banana = new Fruit("Banana");
-//            fruitList.add(banana);
-//            Fruit orange = new Fruit("Orange");
-//            fruitList.add(orange);
-//            Fruit watermelon = new Fruit("Watermelon");
-//            fruitList.add(watermelon);
-//            Fruit pear = new Fruit("Pear");
-//            fruitList.add(pear);
-//            Fruit grape = new Fruit("Grape");
-//            fruitList.add(grape);
-//            Fruit pineapple = new Fruit("Pineapple");
-//            fruitList.add(pineapple);
-//            Fruit strawberry = new Fruit("Strawberry");
-//            fruitList.add(strawberry);
-//            Fruit cherry = new Fruit("Cherry");
-//            fruitList.add(cherry);
-//            Fruit mango = new Fruit("Mango");
-//            fruitList.add(mango);
-//
-//        }
     }
 
 }

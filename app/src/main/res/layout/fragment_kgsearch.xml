@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent" android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <AutoCompleteTextView
             android:id="@+id/autoCompleteTextView"
@@ -10,12 +12,21 @@
             android:layout_height="wrap_content"
             android:text="AutoCompleteTextView"
             tools:ignore="MissingConstraints"
+            android:maxLines="1"
             />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/entitylist"
+            android:scrollbars="vertical"
+            />
+
+
+
+</LinearLayout>
 <!--            android:layout_alignParentStart="true"-->
 <!--            android:layout_alignParentTop="true"-->
 <!--            android:layout_marginStart="19dp"-->
 <!--            android:layout_marginTop="18dp"-->
 <!--            android:completionThreshold="1"-->
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>

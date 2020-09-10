@@ -162,6 +162,7 @@ public class SplashActivity extends Activity {
                     atlasModelslist=ay.jxAtlas(dataa);
                     for (int i=0;i<atlasModelslist.size();i++)
                     {
+                        AtlasModel am=atlasModelslist.get(i);
                         System.out.println(atlasModelslist.get(i).toString());
                     }
                 } catch (JSONException e) {
