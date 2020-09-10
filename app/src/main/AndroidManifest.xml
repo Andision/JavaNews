@@ -17,12 +17,9 @@
             >
 
 
-
-
-
         <activity
                 android:theme="@style/AppTheme"
-                android:name="com.example.CONVID19News.MainActivity"
+                android:name="com.example.CONVID19News.start.SplashActivity"
                 android:label="@string/app_name">
 
             <intent-filter>
@@ -30,6 +27,19 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+
+        <activity
+                android:theme="@style/AppTheme"
+                android:name="com.example.CONVID19News.MainActivity"
+                android:label="@string/app_name">
+
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <activity android:name="com.example.CONVID19News.news.NewsActivity"
@@ -45,6 +55,8 @@
         <activity android:name="com.example.CONVID19News.ui.home.SearchActivity"
                 android:theme="@style/AppTheme">
         </activity>
+
+
 
 
 
