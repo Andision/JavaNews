@@ -14,32 +14,29 @@ import com.example.CONVID19News.ui.home.Fruit;
 
 import java.util.List;
 
-public class KGEntityAdapter extends RecyclerView.Adapter<KGEntityAdapter.ViewHolder> {
+public class RelationAdapter extends RecyclerView.Adapter<RelationAdapter.ViewHolder> {
 
-    private List<KGEntity> mFruitList;
     private List<Fruit> mRelationList;
 
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView fruitName;
-        RecyclerView relationRecycler;
 
         public ViewHolder(View view) {
             super(view);
-            fruitName = (TextView) view.findViewById(R.id.entityname);
-            relationRecycler=view.findViewById(R.id.relationlist);
+            fruitName = (TextView) view.findViewById(R.id.relationname);
         }
 
     }
 
-    public KGEntityAdapter(List<KGEntity> fruitList) {
-        mFruitList = fruitList;
+    public RelationAdapter(List<Fruit> fruitList) {
+        mRelationList = fruitList;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.kgsearch_item, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_relation, parent, false);
             ViewHolder holder = new ViewHolder(view);
             return holder;
 
@@ -52,11 +49,10 @@ public class KGEntityAdapter extends RecyclerView.Adapter<KGEntityAdapter.ViewHo
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
 
-            KGEntity fruit = mFruitList.get(position);
+            Fruit fruit = mRelationList.get(position);
             holder.fruitName.setText(fruit.getName());
 
-        RelationAdapter adapter = new RelationAdapter(mRelationList);
-        holder.relationRecycler.setAdapter(adapter);
+            RelationAdapter relationAdapter=new RelationAdapter(mRelationList);
 
 //            holder.fruitName.setText(Html.fromHtml("<p>" + fruit.getTitle() + "</p>\n" +
 //                    "<span><small>" + fruit.getDate() + "</small></span>\n" +
@@ -66,6 +62,6 @@ public class KGEntityAdapter extends RecyclerView.Adapter<KGEntityAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return mFruitList.size();
+        return mRelationList.size();
     }
 }

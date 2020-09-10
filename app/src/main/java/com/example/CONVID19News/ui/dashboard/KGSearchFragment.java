@@ -63,6 +63,7 @@ public class KGSearchFragment extends Fragment{
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+        layoutManager.setAutoMeasureEnabled(true);
 
 //        SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(), "mydatabase", null, 1);
 //        final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
