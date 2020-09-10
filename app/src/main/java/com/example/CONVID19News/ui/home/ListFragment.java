@@ -1,5 +1,6 @@
 package com.example.CONVID19News.ui.home;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.Cursor;
@@ -26,8 +27,15 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.CONVID19News.R;
+import com.example.CONVID19News.bean.NewslistModel;
 import com.example.CONVID19News.database.DatabaseHelper;
+import com.example.CONVID19News.http.Url;
+import com.example.CONVID19News.http.httpurl;
+import com.example.CONVID19News.http.json.NewsListJson;
+import com.example.CONVID19News.myData;
 //import com.example.newtest0903.news.NewsActivity;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +47,7 @@ public class ListFragment extends Fragment {
     private String mFrom;
     private List<Fruit> fruitList = new ArrayList<>();
 
-    String test;
+    String myType;
 
     public ListFragment() {
         // Required empty public constructor
@@ -47,7 +55,7 @@ public class ListFragment extends Fragment {
 
     public ListFragment(String t) {
         // Required empty public constructor
-        test=t;
+        myType=t;
     }
 
     public static Fragment newInstance(String from){
@@ -76,12 +84,14 @@ public class ListFragment extends Fragment {
         initFruits();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.newslist);
         recyclerView.setHasFixedSize(true);
-        recyclerView.addItemDecoration(new SimplePaddingDecoration(getActivity()));
+//        recyclerView.addItemDecoration(new SimplePaddingDecoration(getActivity()));
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        final FruitAdapter adapter = new FruitAdapter(fruitList);
+        SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(),"mydatabase",null,1);
+        final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
+        final FruitAdapter adapter = new FruitAdapter(fruitList,sqliteDatabase,myType);
         recyclerView.setAdapter(adapter);
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -100,10 +110,49 @@ public class ListFragment extends Fragment {
 //                    && mAdapter.isShowFooter() && !mPresenter.isLoading()
 
 
-                    adapter.appendNewsList();
-                    adapter.notifyDataSetChanged();
+//                    adapter.appendNewsList();
 
-                    Toast.makeText(getActivity(), "SCROLL"+lastVisibleItem+"Total"+adapter.getItemCount(),Toast.LENGTH_SHORT).show();
+                    SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(),"mydatabase",null,1);
+                    final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
+                    new Thread(){
+                        @Override
+                        public void run() {
+//线程要执行的任务
+                            super.run();
+                            //新闻列表
+                            Url tt = new Url();
+                            String x="";
+                            if(myType=="NEWS"){
+                                x = tt.getUrl("news", myData.getNewsURLPage());
+                            }
+                            httpurl xx = new httpurl();
+                            String data = xx.pub(x);
+                            List<NewslistModel> newslist = new ArrayList<NewslistModel>();
+                            NewsListJson cc = new NewsListJson();
+                            try {
+                                newslist = cc.jxNewslist(data);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            for (int i = 0; i < newslist.size(); i++) {
+                                NewslistModel newsInsert=newslist.get(i);
+//                    System.out.println(newslist.get(i).toString());
+                                ContentValues values = new ContentValues();
+                                values.put("title", newsInsert.getTitle());
+                                values.put("date", newsInsert.getDate());
+                                values.put("ffrom", newsInsert.getFrom());
+                                values.put("content", newsInsert.getContent());
+                                sqliteDatabase.insert("news", null, values);
+
+                            }
+                            adapter.appendNewsList(sqliteDatabase);
+
+                        }
+                    }.start();
+
+//                    adapter.notifyDataSetChanged();
+
+//                    Toast.makeText(getActivity(), "SCROLL"+lastVisibleItem+"Total"+adapter.getItemCount(),Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -151,23 +200,65 @@ public class ListFragment extends Fragment {
         swiprefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //模拟网络请求需要3000毫秒，请求完成，设置setRefreshing 为false
-                new Handler().postDelayed(new Runnable() {
+
+                SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(),"mydatabase",null,1);
+                final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
+                new Thread(){
                     @Override
                     public void run() {
-                        Toast.makeText(getActivity(), "Refresh Finish!!",
-                                Toast.LENGTH_SHORT).show();
+//线程要执行的任务
+                        super.run();
+                        //新闻列表
+                        Url tt = new Url();
+                        String x="";
+                        if(myType=="NEWS"){
+                            x = tt.getUrl("news", myData.getNewsURLPage());
+                        }
+                        httpurl xx = new httpurl();
+                        String data = xx.pub(x);
+                        List<NewslistModel> newslist = new ArrayList<NewslistModel>();
+                        NewsListJson cc = new NewsListJson();
+                        try {
+                            newslist = cc.jxNewslist(data);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        for (int i = 0; i < newslist.size(); i++) {
+                            NewslistModel newsInsert=newslist.get(i);
+//                    System.out.println(newslist.get(i).toString());
+                            ContentValues values = new ContentValues();
+                            values.put("title", newsInsert.getTitle());
+                            values.put("date", newsInsert.getDate());
+                            values.put("ffrom", newsInsert.getFrom());
+                            values.put("content", newsInsert.getContent());
+                            sqliteDatabase.insert("news", null, values);
 
+                        }
+                        adapter.appendNewsListFirst(newslist,swiprefresh);
 
-                        adapter.appendNewsListFirst();
-                        adapter.notifyDataSetChanged();
-
-
-
-
-                        swiprefresh.setRefreshing(false);
                     }
-                }, 3000);
+                }.start();
+
+
+
+
+                //模拟网络请求需要3000毫秒，请求完成，设置setRefreshing 为false
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Toast.makeText(getActivity(), "Refresh Finish!!",
+//                                Toast.LENGTH_SHORT).show();
+//
+//
+//                        adapter.appendNewsListFirst();
+//                        adapter.notifyDataSetChanged();
+//
+//
+//
+//
+//                        swiprefresh.setRefreshing(false);
+//                    }
+//                }, 3000);
             }
         });
 
@@ -192,9 +283,13 @@ public class ListFragment extends Fragment {
         return view;
     }
 
+    void finishGet(){
+
+    }
+
     private void initFruits() {
-        Fruit aaa = new Fruit(test);
-        fruitList.add(aaa);
+//        Fruit aaa = new Fruit(test);
+//        fruitList.add(aaa);
 
 
         SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(),"mydatabase",null,1);
@@ -210,7 +305,7 @@ public class ListFragment extends Fragment {
             String ccontent =result.getString(4);
 //            System.out.println(title+date+ffrom);
             // do something useful with these
-            Fruit myInsert = new Fruit(title,date,ffrom,ccontent);
+            Fruit myInsert = new Fruit(title,date,ffrom,ccontent,result.getInt(5));
             fruitList.add(myInsert);
 
             result.moveToNext();
@@ -253,24 +348,24 @@ public class ListFragment extends Fragment {
 
 
 
-class SimplePaddingDecoration extends RecyclerView.ItemDecoration {
-
-    private int dividerHeight;
-
-
-    public SimplePaddingDecoration(Context context) {
-        dividerHeight = 50;
-    }
-
-    @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        super.getItemOffsets(outRect, view, parent, state);
-        outRect.bottom = dividerHeight;//类似加了一个bottom padding
-    }
-
-    @Override
-    public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-        super.onDraw(c, parent, state);
-
-    }
-}
+//class SimplePaddingDecoration extends RecyclerView.ItemDecoration {
+//
+//    private int dividerHeight;
+//
+//
+//    public SimplePaddingDecoration(Context context) {
+//        dividerHeight = 50;
+//    }
+//
+//    @Override
+//    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+//        super.getItemOffsets(outRect, view, parent, state);
+//        outRect.bottom = dividerHeight;//类似加了一个bottom padding
+//    }
+//
+//    @Override
+//    public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+//        super.onDraw(c, parent, state);
+//
+//    }
+//}

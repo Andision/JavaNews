@@ -16,6 +16,7 @@ import com.example.CONVID19News.database.DatabaseHelper;
 import com.example.CONVID19News.http.Url;
 import com.example.CONVID19News.http.httpurl;
 import com.example.CONVID19News.http.json.NewsListJson;
+import com.example.CONVID19News.myData;
 
 import org.json.JSONException;
 
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class SplashActivity extends Activity {
 
-    private static int SPLASH_DISPLAY_LENGHT= 2000;    //延迟2秒
+    private static int SPLASH_DISPLAY_LENGHT= 3000;    //延迟2秒
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class SplashActivity extends Activity {
                 super.run();
                 //新闻列表
                 Url tt = new Url();
-                String x = tt.getUrl("news", 1);
+                String x = tt.getUrl("news", myData.getNewsURLPage());
                 httpurl xx = new httpurl();
                 String data = xx.pub(x);
                 List<NewslistModel> newslist = new ArrayList<NewslistModel>();
@@ -76,18 +77,18 @@ public class SplashActivity extends Activity {
 //            sqliteDatabase.insert("news", null, values);
 //        }
 
-        Intent intent = new Intent(this, MainActivity.class);	//第二个参数即为执行完跳转后的Activity
-        startActivity(intent);
-        SplashActivity.this.finish();   //关闭splashActivity，将其回收，否则按返回键会返回此界面
+//        Intent intent = new Intent(this, MainActivity.class);	//第二个参数即为执行完跳转后的Activity
+//        startActivity(intent);
+//        SplashActivity.this.finish();   //关闭splashActivity，将其回收，否则按返回键会返回此界面
 
 
-//        new Handler().postDelayed(new Runnable() {
-//            public void run() {
-//                Intent intent = new Intent(SplashActivity.this, MainActivity.class);	//第二个参数即为执行完跳转后的Activity
-//                startActivity(intent);
-//                SplashActivity.this.finish();   //关闭splashActivity，将其回收，否则按返回键会返回此界面
-//            }
-//        }, SPLASH_DISPLAY_LENGHT);
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);	//第二个参数即为执行完跳转后的Activity
+                startActivity(intent);
+                SplashActivity.this.finish();   //关闭splashActivity，将其回收，否则按返回键会返回此界面
+            }
+        }, SPLASH_DISPLAY_LENGHT);
     }
 }
 
