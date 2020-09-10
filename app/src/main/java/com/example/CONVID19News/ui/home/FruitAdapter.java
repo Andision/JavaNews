@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,8 +78,14 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
         if(holder.getItemViewType()==normalType){
 
             Fruit fruit = mFruitList.get(position);
-            holder.fruitName.setText(fruit.getName());
-            holder.fruitName.setGravity(Gravity.CENTER);
+//            holder.fruitName.setText(fruit.getName());
+
+            holder.fruitName.setText(Html.fromHtml("<p>"+fruit.getTitle()+"</p>\n" +
+                    "<span><small>"+fruit.getDate()+"</small></span>\n" +
+                    "<span><small>"+fruit.getFrom()+"</small></span>"));
+
+
+//            holder.fruitName.setGravity(Gravity.CENTER);
 //        holder.fruitName.setWidth(get);
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -2,6 +2,9 @@ package com.example.CONVID19News.ui.home;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -23,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.CONVID19News.R;
+import com.example.CONVID19News.database.DatabaseHelper;
 //import com.example.newtest0903.news.NewsActivity;
 
 import java.util.ArrayList;
@@ -191,29 +195,50 @@ public class ListFragment extends Fragment {
     private void initFruits() {
         Fruit aaa = new Fruit(test);
         fruitList.add(aaa);
-        for (int i = 0; i < 3; i++) {
-            Fruit apple = new Fruit("Apple");
-            fruitList.add(apple);
-            Fruit banana = new Fruit("Banana");
-            fruitList.add(banana);
-            Fruit orange = new Fruit("Orange");
-            fruitList.add(orange);
-            Fruit watermelon = new Fruit("Watermelon");
-            fruitList.add(watermelon);
-            Fruit pear = new Fruit("Pear");
-            fruitList.add(pear);
-            Fruit grape = new Fruit("Grape");
-            fruitList.add(grape);
-            Fruit pineapple = new Fruit("Pineapple");
-            fruitList.add(pineapple);
-            Fruit strawberry = new Fruit("Strawberry");
-            fruitList.add(strawberry);
-            Fruit cherry = new Fruit("Cherry");
-            fruitList.add(cherry);
-            Fruit mango = new Fruit("Mango");
-            fruitList.add(mango);
 
+
+        SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(),"mydatabase",null,1);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Cursor result=db.rawQuery("select * from news",new String[]{});
+        result.moveToFirst();
+        while (!result.isAfterLast()) {
+            int id=result.getInt(0);
+            String title=result.getString(1);
+            String date =result.getString(2);
+            String ffrom =result.getString(3);
+            String ccontent =result.getString(4);
+//            System.out.println(title+date+ffrom);
+            // do something useful with these
+            Fruit myInsert = new Fruit(title,date,ffrom,ccontent);
+            fruitList.add(myInsert);
+
+            result.moveToNext();
         }
+        result.close();
+//        for (int i = 0; i < 3; i++) {
+//            Fruit apple = new Fruit("Apple");
+//            fruitList.add(apple);
+//            Fruit banana = new Fruit("Banana");
+//            fruitList.add(banana);
+//            Fruit orange = new Fruit("Orange");
+//            fruitList.add(orange);
+//            Fruit watermelon = new Fruit("Watermelon");
+//            fruitList.add(watermelon);
+//            Fruit pear = new Fruit("Pear");
+//            fruitList.add(pear);
+//            Fruit grape = new Fruit("Grape");
+//            fruitList.add(grape);
+//            Fruit pineapple = new Fruit("Pineapple");
+//            fruitList.add(pineapple);
+//            Fruit strawberry = new Fruit("Strawberry");
+//            fruitList.add(strawberry);
+//            Fruit cherry = new Fruit("Cherry");
+//            fruitList.add(cherry);
+//            Fruit mango = new Fruit("Mango");
+//            fruitList.add(mango);
+//
+//        }
     }
 
 }

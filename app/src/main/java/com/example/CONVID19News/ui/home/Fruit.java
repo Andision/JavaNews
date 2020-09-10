@@ -4,16 +4,39 @@ import android.webkit.JavascriptInterface;
 
 public class Fruit {
 
-    private String name;
+    private String title;
+    private String date;
+    private String ffrom;
+    private String content;
+
+
 
     public Fruit(String name){
-        this.name = name;
-
+        this.title = name;
     }
 
-    @JavascriptInterface
+    public Fruit(String s1,String s2,String s3,String s4){
+        title=s1;
+        date=s2;
+        ffrom=s3;
+        content=s4;
+    }
+
     public String getName() {
-        return name;
+        return title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+    public String getDate() {
+        return date;
+    }
+    public String getFrom() {
+        return ffrom;
+    }
+    public String getContent() {
+        return content;
     }
 
 }
