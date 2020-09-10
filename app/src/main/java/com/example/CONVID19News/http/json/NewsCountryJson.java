@@ -25,7 +25,8 @@ public class NewsCountryJson {
                 cc.setBegintime(ttt.getString("begin"));
                 JSONArray tpp=ttt.getJSONArray("data");
                 List<timedata> mm = new ArrayList<timedata>();
-                for (int j = 0; j <30 ; j++) {
+
+                for (int j = tpp.length()-20; j <tpp.length() ; j++) {
                     JSONArray ttp=tpp.getJSONArray(j);
                     timedata xx = new timedata();
                     xx.setConfirmed(ttp.getString(0));

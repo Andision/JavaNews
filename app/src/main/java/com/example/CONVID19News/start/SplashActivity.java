@@ -128,18 +128,19 @@ public class SplashActivity extends Activity {
 //                    for (int i = 0; i <countryModels.size() ; i++) {
 //                        System.out.println(countryModels.get(i).toString());
 //                    }
-                    for (int i = 0; i < provinceModels.size(); i++) {
-                        System.out.println(provinceModels.get(i).toString());
-                    }
-                    for (int i = 0; i < cityModels.size(); i++) {
-                        System.out.println(cityModels.get(i).toString());
-                    }
+//                    for (int i = 0; i < provinceModels.size(); i++) {
+//                        System.out.println(provinceModels.get(i).toString());
+//                    }
+//                    for (int i = 0; i < cityModels.size(); i++) {
+//                        System.out.println(cityModels.get(i).toString());
+//                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
                 myData.setCountry(provinceModels);
+                myData.setChina(countryModels);
 
             }
         }.start();

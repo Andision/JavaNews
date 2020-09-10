@@ -14,6 +14,7 @@ public class myData{
     private static int newspage=0;
     private static int paperpage=0;
     private static List<CountryModel>provinceModels;
+    private static List<CountryModel>ChinaModels;
 
     private static myData instance = new myData();
 
@@ -66,6 +67,13 @@ public class myData{
     }
     public static void setCountry(List<CountryModel> prov){
         provinceModels=prov;
+    }
+
+    public static List<CountryModel> getChina(){
+        return ChinaModels;
+    }
+    public static void setChina(List<CountryModel> prov){
+        ChinaModels=prov;
     }
 
 }

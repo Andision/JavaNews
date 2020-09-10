@@ -22,7 +22,7 @@ import java.util.List;
 public class NotificationsFragment extends Fragment {
 
     private List<Fragment> fragmentList = new ArrayList<Fragment>();
-    private String[] strings = new String[]{"A","B","C","D"};
+    private String[] strings = new String[]{"China","World"};
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -31,9 +31,9 @@ public class NotificationsFragment extends Fragment {
 
         //set viewpager---------------------------------------------
         fragmentList.add(new DataChartFragment());
-        fragmentList.add(new ListFragment());
-        fragmentList.add(new ListFragment());
-        fragmentList.add(new ListFragment());
+        fragmentList.add(new WorldDataChartFragment());
+//        fragmentList.add(new ListFragment());
+//        fragmentList.add(new ListFragment());
 
         TabLayout tab_layout = root.findViewById(R.id.tab_layout);
         ViewPager viewPager = root.findViewById(R.id.vp);
@@ -55,7 +55,7 @@ public class NotificationsFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return 4;
+            return 2;
         }
 
         @Override

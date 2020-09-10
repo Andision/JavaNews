@@ -1,6 +1,11 @@
 package com.example.CONVID19News.ui.home;
 
 import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -19,7 +24,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.CONVID19News.R;
+import com.example.CONVID19News.database.DatabaseHelper;
 import com.example.CONVID19News.myData;
+import com.example.CONVID19News.news.NewsActivity;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.ArrayList;
@@ -46,6 +53,7 @@ public class SearchActivity extends Activity {
 
 
         SearchView searchView=findViewById(R.id.view_search);
+
 //        searchView.setQueryHint("Search");
 //        searchView.setIconified(false);
         searchView.setIconifiedByDefault(false);
@@ -58,6 +66,18 @@ public class SearchActivity extends Activity {
             public boolean onQueryTextSubmit(String query) {
                 //实际应用中应该在该方法内执行实际查询，此处仅使用Toast显示用户输入的查询内容
 //                Toast.makeText(getActivity(), "Your Input: " + query,Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("s", query);
+
+
+//                bundle.putString("date", mFruitList.get(position).getDate());
+//                bundle.putString("from", mFruitList.get(position).getFrom());
+//                bundle.putString("content", mFruitList.get(position).getContent());
+//                intent.putExtras(bundle);
+//                startActivity(intent);
+
+                getSearchResult(bundle,query);
+
                 return false;
             }
 
@@ -80,10 +100,48 @@ public class SearchActivity extends Activity {
     }
 
     private void initFruits() {
-        for (int i = 0; i < 20; i++) {
-            Fruit apple = new Fruit("SearchHistory:" + i);
+
+        SQLiteOpenHelper dbHelper = new DatabaseHelper(this, "mydatabase", null, 1);
+        final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
+
+        Cursor result=sqliteDatabase.rawQuery("select * from searchhistory", new String[]{});
+
+        result.moveToFirst();
+        while (!result.isAfterLast()) {
+            int id = result.getInt(0);
+            String title = result.getString(1);
+
+//            System.out.println(title+date+ffrom);
+            // do something useful with these
+            Fruit apple = new Fruit(title);
             fruitList.add(apple);
+
+            result.moveToNext();
         }
+        result.close();
+
+
+//        for (int i = 0; i < 20; i++) {
+//            Fruit apple = new Fruit("SearchHistory:" + i);
+//            fruitList.add(apple);
+//        }
+    }
+
+    void getSearchResult(Bundle bun,String s){
+
+        SQLiteOpenHelper dbHelper = new DatabaseHelper(this, "mydatabase", null, 1);
+        final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("title", s);
+        sqliteDatabase.insert("searchhistory", null, values);
+
+
+
+        Intent intent = new Intent();
+        intent.putExtras(bun);
+        intent.setClass(this, SearchResultActivity.class);
+        startActivity(intent);
     }
 }
 

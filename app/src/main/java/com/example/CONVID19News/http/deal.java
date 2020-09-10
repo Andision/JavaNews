@@ -25,9 +25,9 @@ public class deal {
             for (int i = 0; i <x.size(); i++) {
                 if(x.get(i).getArea().contains("|"))
                 {
-                    x.get(i).getArea().split("\\|");
-                    String[] ads=x.get(i).getArea().split("|");
-                    if(x.get(i).getArea().split("\\|").length==2)
+//                    x.get(i).getArea().split("\\|");
+                    String[] ads=x.get(i).getArea().split("\\|");
+                    if(x.get(i).getArea().split("\\|").length==2&&ads[0].equals("China"))
                     {
                         x.get(i).setArea(x.get(i).getArea().split("\\|")[1]);
                         retlist.add(x.get(i));

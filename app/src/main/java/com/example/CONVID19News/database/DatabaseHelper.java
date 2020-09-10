@@ -45,7 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sql = "create table paper(id integer primary key autoincrement,title text UNIQUE,date text,ffrom text,content text,isread integer DEFAULT (0))";
         db.execSQL(sql);
 
-        sql = "create table searchhistory(id integer primary key autoincrement,content text)";
+        sql = "create table searchhistory(id integer primary key autoincrement,title text)";
         db.execSQL(sql);
 
 
