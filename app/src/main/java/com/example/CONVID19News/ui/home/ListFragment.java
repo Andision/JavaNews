@@ -28,10 +28,12 @@ import android.widget.Toast;
 
 import com.example.CONVID19News.R;
 import com.example.CONVID19News.bean.NewslistModel;
+import com.example.CONVID19News.bean.PaperlistModel;
 import com.example.CONVID19News.database.DatabaseHelper;
 import com.example.CONVID19News.http.Url;
 import com.example.CONVID19News.http.httpurl;
 import com.example.CONVID19News.http.json.NewsListJson;
+import com.example.CONVID19News.http.json.PaperListJson;
 import com.example.CONVID19News.myData;
 //import com.example.newtest0903.news.NewsActivity;
 
@@ -55,21 +57,13 @@ public class ListFragment extends Fragment {
 
     public ListFragment(String t) {
         // Required empty public constructor
-        myType=t;
-    }
-
-    public static Fragment newInstance(String from){
-        HomeFragment homeFragment = new HomeFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("from",from);
-        homeFragment.setArguments(bundle);
-        return homeFragment;
+        myType = t;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null){
+        if (getArguments() != null) {
             mFrom = (String) getArguments().get("from");
         }
     }
@@ -89,9 +83,9 @@ public class ListFragment extends Fragment {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(),"mydatabase",null,1);
+        SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(), "mydatabase", null, 1);
         final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
-        final FruitAdapter adapter = new FruitAdapter(fruitList,sqliteDatabase,myType);
+        final FruitAdapter adapter = new FruitAdapter(fruitList, sqliteDatabase, myType);
         recyclerView.setAdapter(adapter);
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -112,38 +106,66 @@ public class ListFragment extends Fragment {
 
 //                    adapter.appendNewsList();
 
-                    SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(),"mydatabase",null,1);
+                    SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(), "mydatabase", null, 1);
                     final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
-                    new Thread(){
+                    new Thread() {
                         @Override
                         public void run() {
 //线程要执行的任务
                             super.run();
-                            //新闻列表
-                            Url tt = new Url();
-                            String x="";
-                            if(myType=="NEWS"){
-                                x = tt.getUrl("news", myData.getNewsURLPage());
-                            }
-                            httpurl xx = new httpurl();
-                            String data = xx.pub(x);
-                            List<NewslistModel> newslist = new ArrayList<NewslistModel>();
-                            NewsListJson cc = new NewsListJson();
-                            try {
-                                newslist = cc.jxNewslist(data);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            for (int i = 0; i < newslist.size(); i++) {
-                                NewslistModel newsInsert=newslist.get(i);
-//                    System.out.println(newslist.get(i).toString());
-                                ContentValues values = new ContentValues();
-                                values.put("title", newsInsert.getTitle());
-                                values.put("date", newsInsert.getDate());
-                                values.put("ffrom", newsInsert.getFrom());
-                                values.put("content", newsInsert.getContent());
-                                sqliteDatabase.insert("news", null, values);
+                            if (myType == "NEWS") {
 
+
+                                //新闻列表
+                                Url tt = new Url();
+                                String x = tt.getUrl("news", myData.getNewsURLPage());
+
+                                httpurl xx = new httpurl();
+                                String data = xx.pub(x);
+                                List<NewslistModel> newslist = new ArrayList<NewslistModel>();
+                                NewsListJson cc = new NewsListJson();
+                                try {
+                                    newslist = cc.jxNewslist(data);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                for (int i = 0; i < newslist.size(); i++) {
+                                    NewslistModel newsInsert = newslist.get(i);
+//                    System.out.println(newslist.get(i).toString());
+                                    ContentValues values = new ContentValues();
+                                    values.put("title", newsInsert.getTitle());
+                                    values.put("date", newsInsert.getDate());
+                                    values.put("ffrom", newsInsert.getFrom());
+                                    values.put("content", newsInsert.getContent());
+                                    sqliteDatabase.insert("news", null, values);
+
+                                }
+                            }
+                            else{
+                                //论文列表
+                                Url tt=new Url();
+                                String xp=tt.getUrl("paper",myData.getPaperURLPage());
+                                httpurl xpp=new httpurl();
+                                String datap= xpp.pub(xp);
+                                List<PaperlistModel> paperlist=new ArrayList <PaperlistModel>();
+                                PaperListJson pp=new PaperListJson();
+                                try {
+                                    paperlist=pp.jxPaperlist(datap);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                for (int i=0;i<paperlist.size();i++)
+                                {
+                                    PaperlistModel paperInsert=paperlist.get(i);
+
+                                    ContentValues values = new ContentValues();
+                                    values.put("title", paperInsert.getTitle());
+                                    values.put("date", paperInsert.getDate());
+                                    values.put("ffrom", paperInsert.getAuthors());
+                                    values.put("content", paperInsert.getContent());
+                                    sqliteDatabase.insert("paper", null, values);
+//                                    System.out.println(paperlist.get(i).toString());
+                                }
                             }
                             adapter.appendNewsList(sqliteDatabase);
 
@@ -196,50 +218,78 @@ public class ListFragment extends Fragment {
         //set newslist********************************************************
 
         //set swiprefresh----------------------------------------------------
-        final SwipeRefreshLayout swiprefresh=view.findViewById(R.id.swiperefresh);
+        final SwipeRefreshLayout swiprefresh = view.findViewById(R.id.swiperefresh);
         swiprefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
-                SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(),"mydatabase",null,1);
+                SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(), "mydatabase", null, 1);
                 final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
-                new Thread(){
+                new Thread() {
                     @Override
                     public void run() {
 //线程要执行的任务
                         super.run();
-                        //新闻列表
-                        Url tt = new Url();
-                        String x="";
-                        if(myType=="NEWS"){
-                            x = tt.getUrl("news", myData.getNewsURLPage());
-                        }
-                        httpurl xx = new httpurl();
-                        String data = xx.pub(x);
-                        List<NewslistModel> newslist = new ArrayList<NewslistModel>();
-                        NewsListJson cc = new NewsListJson();
-                        try {
-                            newslist = cc.jxNewslist(data);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        for (int i = 0; i < newslist.size(); i++) {
-                            NewslistModel newsInsert=newslist.get(i);
-//                    System.out.println(newslist.get(i).toString());
-                            ContentValues values = new ContentValues();
-                            values.put("title", newsInsert.getTitle());
-                            values.put("date", newsInsert.getDate());
-                            values.put("ffrom", newsInsert.getFrom());
-                            values.put("content", newsInsert.getContent());
-                            sqliteDatabase.insert("news", null, values);
 
+                        if (myType == "NEWS") {
+
+
+                            //新闻列表
+                            Url tt = new Url();
+                            String x = tt.getUrl("news", myData.getNewsURLPage());
+
+                            httpurl xx = new httpurl();
+                            String data = xx.pub(x);
+                            List<NewslistModel> newslist = new ArrayList<NewslistModel>();
+                            NewsListJson cc = new NewsListJson();
+                            try {
+                                newslist = cc.jxNewslist(data);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            for (int i = 0; i < newslist.size(); i++) {
+                                NewslistModel newsInsert = newslist.get(i);
+//                    System.out.println(newslist.get(i).toString());
+                                ContentValues values = new ContentValues();
+                                values.put("title", newsInsert.getTitle());
+                                values.put("date", newsInsert.getDate());
+                                values.put("ffrom", newsInsert.getFrom());
+                                values.put("content", newsInsert.getContent());
+                                sqliteDatabase.insert("news", null, values);
+
+                            }
+                            adapter.appendNewsListFirst(newslist, swiprefresh);
                         }
-                        adapter.appendNewsListFirst(newslist,swiprefresh);
+                        else{
+                            //论文列表
+                            Url tt=new Url();
+                            String xp=tt.getUrl("paper",myData.getPaperURLPage());
+                            httpurl xpp=new httpurl();
+                            String datap= xpp.pub(xp);
+                            List<PaperlistModel> paperlist=new ArrayList <PaperlistModel>();
+                            PaperListJson pp=new PaperListJson();
+                            try {
+                                paperlist=pp.jxPaperlist(datap);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            for (int i=0;i<paperlist.size();i++)
+                            {
+                                PaperlistModel paperInsert=paperlist.get(i);
+
+                                ContentValues values = new ContentValues();
+                                values.put("title", paperInsert.getTitle());
+                                values.put("date", paperInsert.getDate());
+                                values.put("ffrom", paperInsert.getAuthors());
+                                values.put("content", paperInsert.getContent());
+                                sqliteDatabase.insert("paper", null, values);
+//                                    System.out.println(paperlist.get(i).toString());
+                            }
+                            adapter.appendPaperListFirst(paperlist, swiprefresh);
+                        }
 
                     }
                 }.start();
-
-
 
 
                 //模拟网络请求需要3000毫秒，请求完成，设置setRefreshing 为false
@@ -283,7 +333,7 @@ public class ListFragment extends Fragment {
         return view;
     }
 
-    void finishGet(){
+    void finishGet() {
 
     }
 
@@ -292,23 +342,31 @@ public class ListFragment extends Fragment {
 //        fruitList.add(aaa);
 
 
-        SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(),"mydatabase",null,1);
+        SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(), "mydatabase", null, 1);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        Cursor result=db.rawQuery("select * from news",new String[]{});
-        result.moveToFirst();
-        while (!result.isAfterLast()) {
-            int id=result.getInt(0);
-            String title=result.getString(1);
-            String date =result.getString(2);
-            String ffrom =result.getString(3);
-            String ccontent =result.getString(4);
+        Cursor result;
+
+        if (myType == "NEWS") {
+            result = db.rawQuery("select * from news", new String[]{});
+        } else {
+            result = db.rawQuery("select * from paper", new String[]{});
+        }
+
+
+        result.moveToLast();
+        while (!result.isBeforeFirst()) {
+            int id = result.getInt(0);
+            String title = result.getString(1);
+            String date = result.getString(2);
+            String ffrom = result.getString(3);
+            String ccontent = result.getString(4);
 //            System.out.println(title+date+ffrom);
             // do something useful with these
-            Fruit myInsert = new Fruit(title,date,ffrom,ccontent,result.getInt(5));
+            Fruit myInsert = new Fruit(title, date, ffrom, ccontent, result.getInt(5));
             fruitList.add(myInsert);
 
-            result.moveToNext();
+            result.moveToPrevious();
         }
         result.close();
 //        for (int i = 0; i < 3; i++) {
@@ -345,7 +403,6 @@ public class ListFragment extends Fragment {
 //        }
 //        return data;
 //    }
-
 
 
 //class SimplePaddingDecoration extends RecyclerView.ItemDecoration {

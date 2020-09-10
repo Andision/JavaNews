@@ -19,11 +19,11 @@ public class PaperlistModel {
     public void setContent(String content1){this.content=content1;}
 
     public  String toString(){
-        return title+"" +
+        return title+"           " +
                 "" +
                 "" +
                 "" +
-                ""+date+""+authors+"" +
+                ""+date+"         "+authors+"    " +
                 "" +
                 "" +
                 "" +

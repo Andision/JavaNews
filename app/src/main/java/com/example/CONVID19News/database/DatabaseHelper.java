@@ -39,10 +39,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // 创建数据库1张表
         // 通过execSQL（）执行SQL语句（此处创建了1个名为person的表）
-        String sql = "create table news(id integer primary key autoincrement,title text,date text,ffrom text,content text,isread integer DEFAULT (0))";
+        String sql = "create table news(id integer primary key autoincrement,title text UNIQUE,date text,ffrom text,content text,isread integer DEFAULT (0) )";
         db.execSQL(sql);
 
-        sql = "create table paper(id integer primary key autoincrement,title text,date text,ffrom text,content text)";
+        sql = "create table paper(id integer primary key autoincrement,title text UNIQUE,date text,ffrom text,content text,isread integer DEFAULT (0))";
         db.execSQL(sql);
 
         sql = "create table searchhistory(id integer primary key autoincrement,content text)";

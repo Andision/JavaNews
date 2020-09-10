@@ -25,6 +25,7 @@ import java.util.List;
 
 import com.example.CONVID19News.R;
 import com.example.CONVID19News.bean.NewslistModel;
+import com.example.CONVID19News.bean.PaperlistModel;
 import com.example.CONVID19News.database.DatabaseHelper;
 import com.example.CONVID19News.news.NewsActivity;
 
@@ -52,10 +53,10 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
 
     }
 
-    public FruitAdapter(List<Fruit> fruitList,SQLiteDatabase db,String mt) {
+    public FruitAdapter(List<Fruit> fruitList, SQLiteDatabase db, String mt) {
         mFruitList = fruitList;
-        sqLiteDatabase=db;
-        myType=mt;
+        sqLiteDatabase = db;
+        myType = mt;
     }
 
     @Override
@@ -74,8 +75,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fruit_item, parent, false);
             ViewHolder holder = new ViewHolder(view);
             return holder;
-        }
-        else {
+        } else {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.foot_view, parent, false);
             ViewHolder holder = new ViewHolder(view);
             return holder;
@@ -88,23 +88,20 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        if(holder.getItemViewType()==normalType){
+        if (holder.getItemViewType() == normalType) {
 
             Fruit fruit = mFruitList.get(position);
 //            holder.fruitName.setText(fruit.getName());
 
-            holder.fruitName.setText(Html.fromHtml("<p>"+fruit.getTitle()+"</p>\n" +
-                    "<span><small>"+fruit.getDate()+"</small></span>\n" +
-                    "<span><small>"+fruit.getFrom()+"</small></span>"));
+            holder.fruitName.setText(Html.fromHtml("<p>" + fruit.getTitle() + "</p>\n" +
+                    "<span><small>" + fruit.getDate() + "</small></span>\n" +
+                    "<span><small>" + fruit.getFrom() + "</small></span>"));
 
-            if (fruit.isRead()==true){
+            if (fruit.isRead() == true) {
                 holder.fruitName.setTextColor(Color.parseColor("#BDBDBD"));
-            }
-            else{
+            } else {
                 holder.fruitName.setTextColor(Color.parseColor("#000000"));
             }
-
-
 
 
 //            holder.fruitName.setGravity(Gravity.CENTER);
@@ -122,7 +119,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
                     values.put("isread", 1);
 
                     // b. 调用update方法修改数据库：将id=1 修改成 name = zhangsan
-                    sqLiteDatabase.update(myType, values, "title=?", new String[] { mFruitList.get(position).getTitle() });
+                    sqLiteDatabase.update(myType, values, "title=?", new String[]{mFruitList.get(position).getTitle()});
 //                    sqliteDatabase.update("user", values, "id=?", new String[] { "1" });
                     // 参数1：表名(String)
                     // 参数2：需修改的ContentValues对象
@@ -134,21 +131,20 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
                     // 注：也可采用SQL语句修改
 
 
-                    Bundle bundle=new Bundle();
-                    bundle.putString("title",mFruitList.get(position).getTitle());
-                    bundle.putString("date",mFruitList.get(position).getDate());
-                    bundle.putString("from",mFruitList.get(position).getFrom());
-                    bundle.putString("content",mFruitList.get(position).getContent());
+                    Bundle bundle = new Bundle();
+                    bundle.putString("title", mFruitList.get(position).getTitle());
+                    bundle.putString("date", mFruitList.get(position).getDate());
+                    bundle.putString("from", mFruitList.get(position).getFrom());
+                    bundle.putString("content", mFruitList.get(position).getContent());
                     Intent intent = new Intent();
                     intent.putExtras(bundle);
                     intent.setClass(holder.fruitName.getContext(), NewsActivity.class);
 //                startActivity(intent);
 //                    holder.fruitName.getContext().startActivity(intent);
-                    ((Activity)holder.fruitName.getContext()).startActivityForResult(intent,100);
+                    ((Activity) holder.fruitName.getContext()).startActivityForResult(intent, 100);
                 }
             });
-        }
-        else{
+        } else {
             // 之所以要设置可见，是因为我在没有更多数据时会隐藏了这个footView
             holder.fruitName.setVisibility(View.VISIBLE);
 //            holder.fruitName.setText("EENNDD");
@@ -160,8 +156,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
                     // 如果查询数据发现增加之后，就显示正在加载更多
                     holder.fruitName.setText("Loading...");
                 }
-            }
-            else {
+            } else {
                 if (mFruitList.size() > 0) {
                     // 如果查询数据发现并没有增加时，就显示没有更多数据了
                     holder.fruitName.setText("Loading...");
@@ -195,17 +190,25 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
 //        SQLiteOpenHelper dbHelper = new DatabaseHelper(a,"mydatabase",null,1);
 //        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        Cursor result=db.rawQuery("select * from news",new String[]{});
+        Cursor result;
+
+        if (myType == "NEWS") {
+            result = db.rawQuery("select * from news", new String[]{});
+        } else {
+            result = db.rawQuery("select * from paper", new String[]{});
+        }
+
+
         result.moveToFirst();
         while (!result.isAfterLast()) {
-            int id=result.getInt(0);
-            String title=result.getString(1);
-            String date =result.getString(2);
-            String ffrom =result.getString(3);
-            String ccontent =result.getString(4);
+            int id = result.getInt(0);
+            String title = result.getString(1);
+            String date = result.getString(2);
+            String ffrom = result.getString(3);
+            String ccontent = result.getString(4);
 //            System.out.println(title+date+ffrom);
             // do something useful with these
-            Fruit myInsert = new Fruit(title,date,ffrom,ccontent,result.getInt(5));
+            Fruit myInsert = new Fruit(title, date, ffrom, ccontent, result.getInt(5));
             mFruitList.add(myInsert);
 
             result.moveToNext();
@@ -230,11 +233,11 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
 
     public void appendNewsListFirst(List<NewslistModel> nl, final SwipeRefreshLayout swiprefresh) {
 
-        for (int i = 0; i < nl.size(); i++) {
-            NewslistModel newsInsert=nl.get(i);
+        for (int i = 0; i<nl.size(); i++) {
+            NewslistModel newsInsert = nl.get(i);
 
-            Fruit apple = new Fruit(newsInsert.getTitle(),newsInsert.getDate(),newsInsert.getFrom(),newsInsert.getContent(),0);
-            mFruitList.add(0,apple);
+            Fruit apple = new Fruit(newsInsert.getTitle(), newsInsert.getDate(), newsInsert.getFrom(), newsInsert.getContent(), 0);
+            mFruitList.add(0, apple);
 
         }
 
@@ -247,6 +250,29 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
         });
 
 
+//        for (int i = 0; i < 3; i++) {
+//            Fruit apple = new Fruit("NNN");
+//            mFruitList.add(0,apple);
+//        }
+    }
+
+    public void appendPaperListFirst(List<PaperlistModel> nl, final SwipeRefreshLayout swiprefresh) {
+
+        for (int i = 0; i<nl.size(); i++) {
+            PaperlistModel newsInsert = nl.get(i);
+
+            Fruit apple = new Fruit(newsInsert.getTitle(), newsInsert.getDate(), newsInsert.getAuthors(), newsInsert.getContent(), 0);
+            mFruitList.add(0, apple);
+
+        }
+
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                notifyDataSetChanged();
+                swiprefresh.setRefreshing(false);
+            }
+        });
 
 
 //        for (int i = 0; i < 3; i++) {

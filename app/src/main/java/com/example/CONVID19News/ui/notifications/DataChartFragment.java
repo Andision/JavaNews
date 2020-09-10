@@ -21,6 +21,9 @@ import com.bin.david.form.core.SmartTable;
 import com.bin.david.form.data.column.Column;
 import com.bin.david.form.data.table.TableData;
 import com.example.CONVID19News.R;
+import com.example.CONVID19News.bean.CountryModel;
+import com.example.CONVID19News.bean.timedata;
+import com.example.CONVID19News.myData;
 import com.example.CONVID19News.ui.home.Fruit;
 import com.example.CONVID19News.ui.home.FruitAdapter;
 import com.example.CONVID19News.ui.home.HomeFragment;
@@ -38,6 +41,8 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -46,7 +51,6 @@ public class DataChartFragment extends Fragment {
     private LineChart mLineChart;
     private LineChartManager mChartManager;
     private SmartTable smartTable;
-
 
 
     public DataChartFragment() {
@@ -67,61 +71,83 @@ public class DataChartFragment extends Fragment {
 
         //set chart--------------------------------------------
         mLineChart = view.findViewById(R.id.line_chart);
-        mChartManager = new LineChartManager(mLineChart,"sensors", Color.BLACK);
+        mChartManager = new LineChartManager(mLineChart, "sensors", Color.BLACK);
         mChartManager.setDescription("");
 
-        for(int i=0;i<15;i++){
-            addEntry(view);
+        for (int i = 0; i < 15; i++) {
+            addEntry(view,0);
         }
         //set chart**********************************************
-        Column<String> city = new Column<>("部门/渠道", "city");
-        Column<Integer> name = new Column<>("板块", "name");
-        Column<Integer> count = new Column<>("目标值", "count");
-        Column<Integer> restaurant = new Column<>("餐饮", "restaurant");
-        Column<Integer> ka = new Column<>("KA", "ka");
-        Column<Integer> wholesale = new Column<>("流通批发", "wholesale");
-        Column<Integer> industry = new Column<>("工业加工", "industry");
-        Column<Integer> other = new Column<>("其他", "other");
+
+        //set table--------------------------------------------
+        Column<String> Province = new Column<>("Province", "Province");
+        Column<String> Confirmed = new Column<>("Confirmed", "Confirmed");
+        Column<Integer> Cured = new Column<>("Cured", "Cured");
+        Column<Integer> Dead = new Column<>("Dead", "Dead");
+        Column<Integer> Suspected = new Column<>("Suspected", "Suspected");
+//        Column<Integer> ka = new Column<>("KA", "ka");
+//        Column<Integer> wholesale = new Column<>("流通批发", "wholesale");
+//        Column<Integer> industry = new Column<>("工业加工", "industry");
+//        Column<Integer> other = new Column<>("其他", "other");
         //设置该列当字段相同时自动合并
-        city.setAutoMerge(true);
-        List<User> list = new ArrayList<>();
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
-        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+        Province.setAutoMerge(true);
+//        Confirmed.setAutoCount(true);
+        final List<User> list = new ArrayList<>();
+
+        final List<CountryModel> proModel = myData.getCountry();
+
+        for(int i=0;i<proModel.size();i++){
+            CountryModel CM=proModel.get(i);
+            timedata td=CM.getTimedataList().get(CM.getTimedataList().size()-1);
+
+            list.add(new User(CM.getArea(),Integer.parseInt(td.getConfirmed()),Integer.parseInt(td.getCured()),Integer.parseInt(td.getDead()),Integer.parseInt(td.getSuspected())));
+        }
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("乌鲁木齐", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+//        list.add(new User("沈阳", 100, 150, 50, 240, 1100, 450, 23458));
+
+//            System.out.println(list.get(0).getClass());
+        Collections.sort(list, new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                return o2.getConfirmed()-o1.getConfirmed();
+            }
+        });
 
 
-        TableData<User> tableData = new TableData<>("表格名", list, city, name, count, restaurant, ka, wholesale, industry, other);
+
+        TableData<User> tableData = new TableData<>("表格名", list, Province,Confirmed,Cured,Dead,Suspected);
         smartTable = view.findViewById(R.id.table);
         smartTable.setTableData(tableData);
         smartTable.getConfig().setShowTableTitle(false);
@@ -130,12 +156,25 @@ public class DataChartFragment extends Fragment {
         tableData.setOnItemClickListener(new TableData.OnItemClickListener() {
             @Override
             public void onClick(Column column, String value, Object o, int col, int row) {
-                Toast.makeText(getActivity(), "X:"+col+",Y:"+row, Toast.LENGTH_SHORT).show();
-                mChartManager = new LineChartManager(mLineChart,"sensors", Color.BLACK);
-                mChartManager.setDescription("");
+//                Toast.makeText(getActivity(), "X:" + col + ",Y:" + row, Toast.LENGTH_SHORT).show();
+//                mChartManager = new LineChartManager(mLineChart, "sensors", Color.BLACK);
+//                mChartManager.setDescription("");
 
-                for(int i=0;i<15;i++){
-                    addEntry(view);
+//                for (int i = 0; i < 15; i++) {
+//                    addEntry(view);
+//                }
+                for(int i=0;i<proModel.size();i++){
+                    if(proModel.get(i).getArea()==list.get(row).getProvince()){
+                        int ii=proModel.get(i).getTimedataList().size()-15;
+                        if(ii<0)ii=0;
+
+                        mChartManager = new LineChartManager(mLineChart, "sensors", Color.BLACK);
+                        for(int j=ii;j<proModel.get(i).getTimedataList().size();j++){
+                            int cnum=Integer.parseInt(proModel.get(i).getTimedataList().get(j).getConfirmed());
+//                            if(cnum<0)cnum=0;
+                            addEntry(view,cnum);
+                        }
+                    }
                 }
             }
         });
@@ -149,8 +188,9 @@ public class DataChartFragment extends Fragment {
     }
 
 
-    public void addEntry(View view) {
-        mChartManager.addEntry((int)(Math.random() * 100));
+    public void addEntry(View view,int num) {
+//        mChartManager.addEntry((int) (Math.random() * 100));
+        mChartManager.addEntry(num);
     }
 }
 
@@ -234,7 +274,8 @@ class LineChartManager {
         lineDataSet.setDrawValues(false);
         lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
         lineDataSet.setValueTextSize(10f);
-        lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+//        lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        lineDataSet.setMode(LineDataSet.Mode.LINEAR);
         //添加一个空的 LineData
         lineData = new LineData();
         lineChart.setData(lineData);
@@ -410,24 +451,30 @@ class LineChartManager {
 
 
 class User {
-    public User(String city, int name, int count, int restaurant, int ka, int wholesale, int industry, int other) {
-        this.city = city;
-        this.name = name;
-        this.count = count;
-        this.restaurant = restaurant;
-        this.ka = ka;
-        this.wholesale = wholesale;
-        this.industry = industry;
-        this.other = other;
+    private String Province;
+    private int Confirmed;
+    private int Cured;
+    private int Dead;
+    private int Suspected;
+    //    name：版块名称，count：目标值，restaurant：餐饮数量，ka：KA数量，wholesale：流通批发数量，industry：工业加工数量，other：其它数量
+
+
+    public User(String p, int co, int cu, int d, int s) {
+        this.Province = p;
+        this.Confirmed = co;
+        this.Cured = cu;
+        this.Dead = d;
+        this.Suspected = s;
+
     }
 
-    //    name：版块名称，count：目标值，restaurant：餐饮数量，ka：KA数量，wholesale：流通批发数量，industry：工业加工数量，other：其它数量
-    private String city;
-    private int name;
-    private int count;
-    private int restaurant;
-    private int ka;
-    private int wholesale;
-    private int industry;
-    private int other;
+    public int getConfirmed(){
+        return Confirmed;
+    }
+
+    public String getProvince(){
+        return Province;
+    }
+
+
 }

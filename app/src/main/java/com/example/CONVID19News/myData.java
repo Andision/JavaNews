@@ -2,6 +2,8 @@ package com.example.CONVID19News;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.CONVID19News.bean.CountryModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,9 @@ public class myData{
 
     private static List<String> tabStrings = new ArrayList<String>();
     private static List<String> unactiveTabStrings = new ArrayList<String>();
-    private static int newspage=1;
+    private static int newspage=0;
+    private static int paperpage=0;
+    private static List<CountryModel>provinceModels;
 
     private static myData instance = new myData();
 
@@ -42,11 +46,26 @@ public class myData{
     }
 
     public static int getNewsURLPage(){
-        if(newspage>99)
+        if(newspage>50)
             newspage=0;
 
         newspage++;
         return newspage;
+    }
+
+    public static int getPaperURLPage(){
+        if(paperpage>50)
+            paperpage=0;
+
+        paperpage++;
+        return paperpage;
+    }
+
+    public static List<CountryModel> getCountry(){
+        return provinceModels;
+    }
+    public static void setCountry(List<CountryModel> prov){
+        provinceModels=prov;
     }
 
 }

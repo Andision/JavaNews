@@ -23,10 +23,11 @@ public class PaperListJson {
                 PaperlistModel nm=new PaperlistModel();
                 nm.setContent(tmp.getString("content"));
                 JSONArray aut=tmp.getJSONArray("authors");
-                String attr=null;
+                String attr=" ";
                 for (int j=0;j<aut.length();j++)
                 {
                     JSONObject tmo=aut.getJSONObject(j);
+                    attr+="  ";
                     attr+=tmo.getString("name");
                 }
                 nm.setAuthors(attr);
