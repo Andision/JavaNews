@@ -11,6 +11,7 @@ import android.view.Window;
 
 import com.example.CONVID19News.MainActivity;
 import com.example.CONVID19News.R;
+import com.example.CONVID19News.bean.AtlasModel;
 import com.example.CONVID19News.bean.CountryModel;
 import com.example.CONVID19News.bean.NewslistModel;
 import com.example.CONVID19News.bean.PaperlistModel;
@@ -18,6 +19,7 @@ import com.example.CONVID19News.database.DatabaseHelper;
 import com.example.CONVID19News.http.Url;
 import com.example.CONVID19News.http.deal;
 import com.example.CONVID19News.http.httpurl;
+import com.example.CONVID19News.http.json.NewsAtlasJson;
 import com.example.CONVID19News.http.json.NewsCountryJson;
 import com.example.CONVID19News.http.json.NewsListJson;
 import com.example.CONVID19News.http.json.PaperListJson;
@@ -144,6 +146,45 @@ public class SplashActivity extends Activity {
 
             }
         }.start();
+
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+//新闻图谱
+                Url aa=new Url();
+                String xa=aa.getAtlasUrl("病毒");
+                httpurl xaa=new httpurl();
+                String dataa=xaa.pub(xa);
+                List<AtlasModel> atlasModelslist=new ArrayList <AtlasModel>();
+                NewsAtlasJson ay=new NewsAtlasJson();
+                try {
+                    atlasModelslist=ay.jxAtlas(dataa);
+                    for (int i=0;i<atlasModelslist.size();i++)
+                    {
+                        System.out.println(atlasModelslist.get(i).toString());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
+
+
+
+//        new Thread() {
+//            @Override
+//            public void run() {
+//                super.run();
+//
+//                for(int i=0;i<5;i++){
+//                    ContentValues values = new ContentValues();
+//                    values.put("title", "WELCOME:"+i);
+//                    sqliteDatabase.insert("searchhistory", null, values);
+//                }
+//            }
+//        }.start();
 
 //        for(int i=0;i<20;i++){
 //

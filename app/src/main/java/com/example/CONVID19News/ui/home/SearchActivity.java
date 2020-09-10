@@ -34,12 +34,14 @@ import java.util.List;
 
 public class SearchActivity extends Activity {
 
-    private List<Fruit> fruitList = new ArrayList<>();
+    private List<Fruit> fruitList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        fruitList = new ArrayList<>();
 
         initFruits();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list_searchhistroy);
@@ -48,11 +50,12 @@ public class SearchActivity extends Activity {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        final SearchHistoryAdapter adapter = new SearchHistoryAdapter(fruitList);
+        SearchView searchView=findViewById(R.id.view_search);
+
+        final SearchHistoryAdapter adapter = new SearchHistoryAdapter(fruitList,searchView);
         recyclerView.setAdapter(adapter);
 
 
-        SearchView searchView=findViewById(R.id.view_search);
 
 //        searchView.setQueryHint("Search");
 //        searchView.setIconified(false);
@@ -141,7 +144,13 @@ public class SearchActivity extends Activity {
         Intent intent = new Intent();
         intent.putExtras(bun);
         intent.setClass(this, SearchResultActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,200);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        onCreate(null);
     }
 }
 

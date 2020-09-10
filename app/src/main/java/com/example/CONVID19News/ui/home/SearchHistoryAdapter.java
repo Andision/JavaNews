@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import java.util.List;
 public class SearchHistoryAdapter extends RecyclerView.Adapter<SearchHistoryAdapter.ViewHolder> {
 
     private List<Fruit> mFruitList;
+    private SearchView searchView;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView fruitName;
@@ -32,8 +34,9 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<SearchHistoryAdap
 
     }
 
-    public SearchHistoryAdapter(List<Fruit> fruitList) {
+    public SearchHistoryAdapter(List<Fruit> fruitList,SearchView sv) {
         mFruitList = fruitList;
+        searchView=sv;
     }
 
 
@@ -47,7 +50,7 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<SearchHistoryAdap
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        Fruit fruit = mFruitList.get(position);
+        final Fruit fruit = mFruitList.get(position);
         holder.fruitName.setText(fruit.getName());
         holder.fruitName.setGravity(Gravity.CENTER);
 //        holder.fruitName.setWidth(get);
@@ -55,7 +58,10 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter<SearchHistoryAdap
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(holder.fruitName.getContext(), "History被点击了", Toast.LENGTH_SHORT).show();
+                searchView.setQuery(fruit.getName(),false);
+
+
+//                Toast.makeText(holder.fruitName.getContext(), "History被点击了", Toast.LENGTH_SHORT).show();
             }
         });
 
