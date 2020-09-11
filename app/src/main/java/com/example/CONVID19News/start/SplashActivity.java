@@ -46,66 +46,66 @@ public class SplashActivity extends Activity {
         SQLiteOpenHelper dbHelper = new DatabaseHelper(this, "mydatabase", null, 1);
         final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
 //
-//        new Thread() {
-//            @Override
-//            public void run() {
-////线程要执行的任务
-//                super.run();
-//                //新闻列表
-//                Url tt = new Url();
-//                String x = tt.getUrl("news", myData.getNewsURLPage());
-//                httpurl xx = new httpurl();
-//                String data = xx.pub(x);
-//                List<NewslistModel> newslist = new ArrayList<NewslistModel>();
-//                NewsListJson cc = new NewsListJson();
-//                try {
-//                    newslist = cc.jxNewslist(data);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                for (int i = 0; i < newslist.size(); i++) {
-//                    NewslistModel newsInsert = newslist.get(i);
-////                    System.out.println(newslist.get(i).toString());
-//                    ContentValues values = new ContentValues();
-//                    values.put("title", newsInsert.getTitle());
-//                    values.put("date", newsInsert.getDate());
-//                    values.put("ffrom", newsInsert.getFrom());
-//                    values.put("content", newsInsert.getContent());
-//                    sqliteDatabase.insert("news", null, values);
-//                }
-//            }
-//        }.start();
-//
-//
-//        new Thread() {
-//            @Override
-//            public void run() {
-//                super.run();
-//                //论文列表
-//                Url tt = new Url();
-//                String xp = tt.getUrl("paper", myData.getPaperURLPage());
-//                httpurl xpp = new httpurl();
-//                String datap = xpp.pub(xp);
-//                List<PaperlistModel> paperlist = new ArrayList<PaperlistModel>();
-//                PaperListJson pp = new PaperListJson();
-//                try {
-//                    paperlist = pp.jxPaperlist(datap);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                for (int i = 0; i < paperlist.size(); i++) {
-//                    PaperlistModel paperInsert = paperlist.get(i);
-////                    System.out.println(paperlist.get(i).toString());
-//
-//                    ContentValues values = new ContentValues();
-//                    values.put("title", paperInsert.getTitle());
-//                    values.put("date", paperInsert.getDate());
-//                    values.put("ffrom", paperInsert.getAuthors());
-//                    values.put("content", paperInsert.getContent());
-//                    sqliteDatabase.insert("paper", null, values);
-//                }
-//            }
-//        }.start();
+        new Thread() {
+            @Override
+            public void run() {
+//线程要执行的任务
+                super.run();
+                //新闻列表
+                Url tt = new Url();
+                String x = tt.getUrl("news", myData.getNewsURLPage());
+                httpurl xx = new httpurl();
+                String data = xx.pub(x);
+                List<NewslistModel> newslist = new ArrayList<NewslistModel>();
+                NewsListJson cc = new NewsListJson();
+                try {
+                    newslist = cc.jxNewslist(data);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < newslist.size(); i++) {
+                    NewslistModel newsInsert = newslist.get(i);
+//                    System.out.println(newslist.get(i).toString());
+                    ContentValues values = new ContentValues();
+                    values.put("title", newsInsert.getTitle());
+                    values.put("date", newsInsert.getDate());
+                    values.put("ffrom", newsInsert.getFrom());
+                    values.put("content", newsInsert.getContent());
+                    sqliteDatabase.insert("news", null, values);
+                }
+            }
+        }.start();
+
+
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                //论文列表
+                Url tt = new Url();
+                String xp = tt.getUrl("paper", myData.getPaperURLPage());
+                httpurl xpp = new httpurl();
+                String datap = xpp.pub(xp);
+                List<PaperlistModel> paperlist = new ArrayList<PaperlistModel>();
+                PaperListJson pp = new PaperListJson();
+                try {
+                    paperlist = pp.jxPaperlist(datap);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < paperlist.size(); i++) {
+                    PaperlistModel paperInsert = paperlist.get(i);
+//                    System.out.println(paperlist.get(i).toString());
+
+                    ContentValues values = new ContentValues();
+                    values.put("title", paperInsert.getTitle());
+                    values.put("date", paperInsert.getDate());
+                    values.put("ffrom", paperInsert.getAuthors());
+                    values.put("content", paperInsert.getContent());
+                    sqliteDatabase.insert("paper", null, values);
+                }
+            }
+        }.start();
 
         new Thread() {
             @Override

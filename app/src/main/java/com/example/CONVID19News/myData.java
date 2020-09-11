@@ -60,7 +60,9 @@ public class myData{
     }
 
     public static int getPaperURLPage(){
-        if(paperpage>50)
+//        System.out.println("PAPERPAGE:"+paperpage);
+
+        if(paperpage>3)
             paperpage=0;
 
         paperpage++;

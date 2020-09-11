@@ -22,7 +22,7 @@ import java.util.List;
 public class DashboardFragment extends Fragment {
 
     private List<Fragment> fragmentList = new ArrayList<Fragment>();
-    private String[] strings = new String[]{"KGSEARCH","高关注学者","追忆学者","T"};
+    private String[] strings = new String[]{"图谱搜索","高关注学者","追忆学者","T"};
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
