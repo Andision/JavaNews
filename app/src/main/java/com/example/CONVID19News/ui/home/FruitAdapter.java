@@ -185,7 +185,7 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
         return mFruitList.size();
     }
 
-    public void appendNewsList(SQLiteDatabase db) {
+    public synchronized void appendNewsList(SQLiteDatabase db) {
         mFruitList.clear();
 //        SQLiteOpenHelper dbHelper = new DatabaseHelper(a,"mydatabase",null,1);
 //        SQLiteDatabase db = dbHelper.getWritableDatabase();

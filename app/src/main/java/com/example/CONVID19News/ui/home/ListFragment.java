@@ -69,7 +69,7 @@ public class ListFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public synchronized View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list, container, false);
@@ -98,7 +98,7 @@ public class ListFragment extends Fragment {
             }
 
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            public synchronized void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem == adapter.getItemCount() - 1) {
 //                    && mAdapter.isShowFooter() && !mPresenter.isLoading()
@@ -314,22 +314,6 @@ public class ListFragment extends Fragment {
 
         //set swiprefresh*****************************************************
 
-
-//        //set btn test-----------
-//        Button button=view.findViewById(R.id.btnOpen);
-//        button.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-//                //textView.setText("Welcome!!");
-//                Intent intent = new Intent();
-//                intent.setClass(getActivity(),NewsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        //set btn test*************
-
         return view;
     }
 
@@ -337,7 +321,7 @@ public class ListFragment extends Fragment {
 
     }
 
-    private void initFruits() {
+    private synchronized void initFruits() {
 //        Fruit aaa = new Fruit(test);
 //        fruitList.add(aaa);
 
@@ -353,9 +337,14 @@ public class ListFragment extends Fragment {
             result = db.rawQuery("select * from paper", new String[]{});
         }
 
+        int num_count=0;
+
 
         result.moveToLast();
         while (!result.isBeforeFirst()) {
+            num_count++;
+            if(num_count>50)break;
+
             int id = result.getInt(0);
             String title = result.getString(1);
             String date = result.getString(2);
@@ -369,60 +358,7 @@ public class ListFragment extends Fragment {
             result.moveToPrevious();
         }
         result.close();
-//        for (int i = 0; i < 3; i++) {
-//            Fruit apple = new Fruit("Apple");
-//            fruitList.add(apple);
-//            Fruit banana = new Fruit("Banana");
-//            fruitList.add(banana);
-//            Fruit orange = new Fruit("Orange");
-//            fruitList.add(orange);
-//            Fruit watermelon = new Fruit("Watermelon");
-//            fruitList.add(watermelon);
-//            Fruit pear = new Fruit("Pear");
-//            fruitList.add(pear);
-//            Fruit grape = new Fruit("Grape");
-//            fruitList.add(grape);
-//            Fruit pineapple = new Fruit("Pineapple");
-//            fruitList.add(pineapple);
-//            Fruit strawberry = new Fruit("Strawberry");
-//            fruitList.add(strawberry);
-//            Fruit cherry = new Fruit("Cherry");
-//            fruitList.add(cherry);
-//            Fruit mango = new Fruit("Mango");
-//            fruitList.add(mango);
-//
-//        }
+
     }
 
 }
-//
-//    private List<String> getData(){
-//        List<String> data = new ArrayList<String>();
-//        for(int i = 0;i <20;i++) {
-//            data.add(i+"");
-//        }
-//        return data;
-//    }
-
-
-//class SimplePaddingDecoration extends RecyclerView.ItemDecoration {
-//
-//    private int dividerHeight;
-//
-//
-//    public SimplePaddingDecoration(Context context) {
-//        dividerHeight = 50;
-//    }
-//
-//    @Override
-//    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-//        super.getItemOffsets(outRect, view, parent, state);
-//        outRect.bottom = dividerHeight;//类似加了一个bottom padding
-//    }
-//
-//    @Override
-//    public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-//        super.onDraw(c, parent, state);
-//
-//    }
-//}

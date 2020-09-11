@@ -102,7 +102,7 @@ public class SearchActivity extends Activity {
 
     }
 
-    private void initFruits() {
+    private synchronized void initFruits() {
 
         SQLiteOpenHelper dbHelper = new DatabaseHelper(this, "mydatabase", null, 1);
         final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
@@ -130,7 +130,7 @@ public class SearchActivity extends Activity {
 //        }
     }
 
-    void getSearchResult(Bundle bun,String s){
+    synchronized void getSearchResult(Bundle bun,String s){
 
         SQLiteOpenHelper dbHelper = new DatabaseHelper(this, "mydatabase", null, 1);
         final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();

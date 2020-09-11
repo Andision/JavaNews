@@ -36,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * SQLite数据库创建支持的数据类型： 整型数据、字符串类型、日期类型、二进制
      */
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public synchronized void onCreate(SQLiteDatabase db) {
         // 创建数据库1张表
         // 通过execSQL（）执行SQL语句（此处创建了1个名为person的表）
         String sql = "create table news(id integer primary key autoincrement,title text UNIQUE,date text,ffrom text,content text,isread integer DEFAULT (0) )";
@@ -62,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public synchronized void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // 参数说明： 
         // db ： 数据库 
         // oldVersion ： 旧版本数据库 

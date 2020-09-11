@@ -22,7 +22,7 @@ public class SearchResultActivity extends Activity {
     String SearchWord="%";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected synchronized void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_news);
 
@@ -56,7 +56,7 @@ public class SearchResultActivity extends Activity {
 
     }
 
-    private void initFruits() {
+    private synchronized void initFruits() {
 
         SQLiteOpenHelper dbHelper = new DatabaseHelper(this, "mydatabase", null, 1);
         SQLiteDatabase db = dbHelper.getWritableDatabase();

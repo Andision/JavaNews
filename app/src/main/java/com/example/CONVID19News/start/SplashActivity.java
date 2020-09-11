@@ -37,7 +37,7 @@ public class SplashActivity extends Activity {
     private static int SPLASH_DISPLAY_LENGHT = 3000;    //延迟2秒
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected synchronized void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);//去掉标题
