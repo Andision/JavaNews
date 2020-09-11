@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -82,6 +83,11 @@ public class SearchResultActivity extends Activity {
             result.moveToPrevious();
         }
         result.close();
+
+        if(fruitList.size()==0){
+            TextView tw=this.findViewById(R.id.noresult);
+            tw.setText("No Result");
+        }
 
 
 

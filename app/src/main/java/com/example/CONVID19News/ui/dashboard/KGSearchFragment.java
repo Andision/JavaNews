@@ -1,10 +1,13 @@
 package com.example.CONVID19News.ui.dashboard;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -29,6 +32,7 @@ public class KGSearchFragment extends Fragment{
     String myType;
     KGEntityAdapter adapter;
     RecyclerView recyclerView;
+    View view;
 
     public KGSearchFragment() {
         // Required empty public constructor
@@ -44,7 +48,7 @@ public class KGSearchFragment extends Fragment{
     public synchronized View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_kgsearch, container, false);
+        view = inflater.inflate(R.layout.fragment_kgsearch, container, false);
 
 
         SearchView searchView=view.findViewById(R.id.searchview_kg);
@@ -191,6 +195,15 @@ public class KGSearchFragment extends Fragment{
                 NewsAtlasJson ay=new NewsAtlasJson();
                 try {
                     atlasModelslist=ay.jxAtlas(dataa);
+                    if(atlasModelslist.size()==0){
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                TextView tw=view.findViewById(R.id.noresult);
+                                tw.setText("No Result");
+                            }
+                        });
+                    }
                     for (int i=0;i<atlasModelslist.size();i++)
                     {
                         AtlasModel am=atlasModelslist.get(i);
