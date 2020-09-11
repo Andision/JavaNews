@@ -13,6 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20px"
+        app:cardCornerRadius="5dp"
+
+        android:layout_margin="5dp"
+
+        app:cardBackgroundColor="#EFF8FB"
     >
 
     <TextView

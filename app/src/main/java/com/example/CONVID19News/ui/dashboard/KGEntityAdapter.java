@@ -1,8 +1,10 @@
 package com.example.CONVID19News.ui.dashboard;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +36,7 @@ public class KGEntityAdapter extends RecyclerView.Adapter<KGEntityAdapter.ViewHo
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView fruitName;
         TextView entityWiki;
+        TextView property_title;
         LinearLayout relationContainer;
         LinearLayout propertyContainer;
         ImageView entityimg;
@@ -45,6 +48,7 @@ public class KGEntityAdapter extends RecyclerView.Adapter<KGEntityAdapter.ViewHo
             relationContainer = view.findViewById(R.id.relation_container);
             propertyContainer = view.findViewById(R.id.property_container);
             entityimg= view.findViewById(R.id.entityimage);
+            property_title=view.findViewById(R.id.title_property);
         }
 
     }
@@ -79,6 +83,13 @@ public class KGEntityAdapter extends RecyclerView.Adapter<KGEntityAdapter.ViewHo
                 super.run();
 
                 try {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            holder.entityimg.setImageResource(R.drawable.unfinish);
+                        }
+                    });
+
                     final Bitmap bm=httpurl.getBitmap(fruit.getImg());
 
 
@@ -131,25 +142,37 @@ public class KGEntityAdapter extends RecyclerView.Adapter<KGEntityAdapter.ViewHo
         }
 
 
-        LinearLayout linearLayout1 = new LinearLayout(holder.relationContainer.getContext());
-        linearLayout1.setOrientation(LinearLayout.VERTICAL);
         for (int i = 0; i < fruit.getProperties().size(); i++) {
+            LinearLayout linearLayout1 = new LinearLayout(holder.relationContainer.getContext());
+            linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
+            linearLayout1.setPadding(10,0,10,0);
 
 
             TextView child = new TextView(holder.relationContainer.getContext());
+            child.setGravity(Gravity.CENTER);
             child.setTextSize(20);
-//        child.setTextColor(getResources().getColor(R.color.colorAccent));
-            // 获取当前的时间并转换为时间戳格式, 并设置给TextView
+            child.setWidth(300);
+            child.setBackgroundColor(Color.parseColor("#F6CEEC"));
 
             String fs = fruit.getProperties().get(i).getSxmc();
             if (fs == "null") continue;
-            String currentTime = fs + "         " + fruit.getProperties().get(i).getSxz();
-            child.setText(currentTime);
-            // 调用一个参数的addView方法
+            holder.property_title.setText("PROPERTY");
 
+            String currentTime = fs;
+            child.setText(currentTime);
             linearLayout1.addView(child);
+
+
+            child = new TextView(holder.relationContainer.getContext());
+            child.setGravity(Gravity.LEFT);
+            child.setGravity(1);
+            child.setTextSize(20);
+            currentTime = fruit.getProperties().get(i).getSxz();
+            child.setText(currentTime);
+            linearLayout1.addView(child);
+
+            holder.propertyContainer.addView(linearLayout1);
         }
-        holder.propertyContainer.addView(linearLayout1);
 
 
 //            holder.fruitName.setText(Html.fromHtml("<p>" + fruit.getTitle() + "</p>\n" +

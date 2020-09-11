@@ -75,6 +75,13 @@ public class ScholarAdapter extends RecyclerView.Adapter<ScholarAdapter.ViewHold
                 super.run();
 
                 try {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            holder.scholarimg.setImageResource(R.drawable.unfinish);
+                        }
+                    });
+
                     final Bitmap bm= httpurl.getBitmap(fruit.getAvator());
 
 
@@ -91,7 +98,7 @@ public class ScholarAdapter extends RecyclerView.Adapter<ScholarAdapter.ViewHold
             }
         }.start();
 
-        holder.scholarname.setText(fruit.getName()+fruit.getName_zh());
+        holder.scholarname.setText(fruit.getName()+"  "+fruit.getName_zh());
         holder.scholartitle.setText(fruit.getPosition());
         holder.scholarwordplace.setText(fruit.getAffiliation());
 
@@ -100,7 +107,7 @@ public class ScholarAdapter extends RecyclerView.Adapter<ScholarAdapter.ViewHold
             public void onClick(View view) {
 
                 Bundle bundle = new Bundle();
-                bundle.putString("name", fruit.getName()+fruit.getName_zh());
+                bundle.putString("name", fruit.getName()+"  "+fruit.getName_zh());
                 bundle.putString("title", fruit.getPosition());
                 bundle.putString("workplace", fruit.getAffiliation());
                 bundle.putString("img", fruit.getAvator());

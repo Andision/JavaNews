@@ -35,6 +35,13 @@ public class ScholarDetailsActivity extends AppCompatActivity {
                 super.run();
 
                 try {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            imageView.setImageResource(R.drawable.unfinish);
+                        }
+                    });
+
                     final Bitmap bm= httpurl.getBitmap(bundle.getString("img"));
 
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -57,9 +64,9 @@ public class ScholarDetailsActivity extends AppCompatActivity {
         TextView swp = findViewById(R.id.scholarworkplace);
         swp.setText(bundle.getString("workplace"));
         TextView sbio = findViewById(R.id.scholarprofile);
-        sbio.setText(bundle.getString("bio"));
+        sbio.setText(bundle.getString("bio").replace("<br>","\n\n"));
         TextView sedu = findViewById(R.id.scholaredu);
-        sedu.setText(bundle.getString("edu"));
+        sedu.setText(bundle.getString("edu").replace("<br>","\n\n"));
 //        System.out.println(bundle.getString("bio"));
 //
 //

@@ -61,7 +61,7 @@ public class WorldDataChartFragment extends Fragment {
 
         //set chart--------------------------------------------
         mLineChart = view.findViewById(R.id.line_chart);
-        mChartManager = new LineChartManager(mLineChart, "Confirmed", Color.BLACK);
+        mChartManager = new LineChartManager(mLineChart, "Confirmed", Color.RED);
         mChartManager.setDescription("");
 
         for (int i = 0; i < 15; i++) {
@@ -158,7 +158,7 @@ public class WorldDataChartFragment extends Fragment {
                         int ii=proModel.get(i).getTimedataList().size()-15;
                         if(ii<0)ii=0;
 
-                        mChartManager = new LineChartManager(mLineChart, "sensors", Color.BLACK);
+                        mChartManager = new LineChartManager(mLineChart, "14Days Confirmed", Color.RED);
                         for(int j=ii;j<proModel.get(i).getTimedataList().size();j++){
                             int cnum=Integer.parseInt(proModel.get(i).getTimedataList().get(j).getConfirmed());
 //                            if(cnum<0)cnum=0;

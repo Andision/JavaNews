@@ -19,13 +19,13 @@
 <!--            />-->
 
         <TextView
-                android:text="Search"
+                android:text="    Search"
                 android:id="@+id/view_search"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:gravity="center_vertical|left"
                 android:textSize="70px"
-                android:drawableLeft="@drawable/my_search_icon"
+                android:drawableLeft="@drawable/search_tiny"
 
                 />
 
