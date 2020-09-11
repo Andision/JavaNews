@@ -25,6 +25,7 @@ public class NewsAtlasJson {
             {
                 JSONObject tmp=dataJson.getJSONObject(i);
                 AtlasModel nm=new AtlasModel();
+                nm.setImg(tmp.getString("img"));
                 nm.setLabel(tmp.getString("label"));
                 nm.setData_url(tmp.getString("url"));
                 JSONObject abst=tmp.getJSONObject("abstractInfo");

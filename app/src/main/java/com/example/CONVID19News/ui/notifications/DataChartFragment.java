@@ -279,7 +279,7 @@ class LineChartManager {
         //添加一个空的 LineData
         lineData = new LineData();
         lineChart.setData(lineData);
-        lineChart.invalidate();
+        lineChart.animateX(1000);
 
     }
 

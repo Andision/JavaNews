@@ -60,6 +60,10 @@
                 android:theme="@style/AppTheme">
         </activity>
 
+        <activity android:name="com.example.CONVID19News.ui.dashboard.ScholarDetailsActivity"
+                android:theme="@style/AppTheme">
+        </activity>
+
 
 
 

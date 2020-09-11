@@ -91,8 +91,10 @@ public class ScholarModel {
     }
 
 
-    public String getIs_passedaway() {
-        return is_passedaway;
+    public boolean getIs_passedaway() {
+        if(is_passedaway.equals("true"))
+            return true;
+        else return false;
     }
 
     public void setIs_passedaway(String is_passedaway) {

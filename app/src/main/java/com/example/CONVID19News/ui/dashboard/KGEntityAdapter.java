@@ -1,5 +1,6 @@
 package com.example.CONVID19News.ui.dashboard;
 
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -14,7 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.CONVID19News.R;
 import com.example.CONVID19News.bean.AtlasModel;
+import com.example.CONVID19News.http.Url;
+import com.example.CONVID19News.http.httpurl;
+import com.example.CONVID19News.http.json.NewsAtlasJson;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class KGEntityAdapter extends RecyclerView.Adapter<KGEntityAdapter.ViewHolder> {
@@ -28,6 +36,7 @@ public class KGEntityAdapter extends RecyclerView.Adapter<KGEntityAdapter.ViewHo
         TextView entityWiki;
         LinearLayout relationContainer;
         LinearLayout propertyContainer;
+        ImageView entityimg;
 
         public ViewHolder(View view) {
             super(view);
@@ -35,6 +44,7 @@ public class KGEntityAdapter extends RecyclerView.Adapter<KGEntityAdapter.ViewHo
             entityWiki = (TextView) view.findViewById(R.id.entitywiki);
             relationContainer = view.findViewById(R.id.relation_container);
             propertyContainer = view.findViewById(R.id.property_container);
+            entityimg= view.findViewById(R.id.entityimage);
         }
 
     }
@@ -58,10 +68,32 @@ public class KGEntityAdapter extends RecyclerView.Adapter<KGEntityAdapter.ViewHo
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
 
-        AtlasModel fruit = mFruitList.get(position);
+        final AtlasModel fruit = mFruitList.get(position);
         holder.fruitName.setText(fruit.getLabel());
 
         holder.entityWiki.setText(fruit.getBaidu());
+
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+
+                try {
+                    final Bitmap bm=httpurl.getBitmap(fruit.getImg());
+
+
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            holder.entityimg.setImageBitmap(bm);
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }.start();
 
 
 

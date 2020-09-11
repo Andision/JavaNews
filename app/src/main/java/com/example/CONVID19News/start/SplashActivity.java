@@ -162,9 +162,10 @@ public class SplashActivity extends Activity {
                 NewsScholarJson fy=new NewsScholarJson();
                 try {
                     scholarlist=fy.jxScholar(dataf);
+                    myData.setScholar(scholarlist);
 
-                    for(int i=0;i<scholarlist.size();i++)
-                        System.out.println(scholarlist.get(i).toString());
+//                    for(int i=0;i<scholarlist.size();i++)
+//                        System.out.println(scholarlist.get(i).toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

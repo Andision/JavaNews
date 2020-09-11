@@ -61,7 +61,7 @@ public class WorldDataChartFragment extends Fragment {
 
         //set chart--------------------------------------------
         mLineChart = view.findViewById(R.id.line_chart);
-        mChartManager = new LineChartManager(mLineChart, "sensors", Color.BLACK);
+        mChartManager = new LineChartManager(mLineChart, "Confirmed", Color.BLACK);
         mChartManager.setDescription("");
 
         for (int i = 0; i < 15; i++) {

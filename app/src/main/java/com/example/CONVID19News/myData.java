@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.CONVID19News.bean.AtlasModel;
 import com.example.CONVID19News.bean.CountryModel;
+import com.example.CONVID19News.bean.ScholarModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class myData{
     private static int paperpage=0;
     private static List<CountryModel>provinceModels;
     private static List<CountryModel>ChinaModels;
+    private static List<ScholarModel> scholarlist;
 
     private List<AtlasModel> amlist = new ArrayList<>();
 
@@ -77,6 +79,13 @@ public class myData{
     }
     public static void setChina(List<CountryModel> prov){
         ChinaModels=prov;
+    }
+
+    public static List<ScholarModel> getScholar(){
+        return scholarlist;
+    }
+    public static void setScholar(List<ScholarModel> prov){
+        scholarlist=prov;
     }
 
 }

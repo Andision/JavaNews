@@ -4,21 +4,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingBottom="?attr/actionBarSize"
-        >
-
-    <SearchView
-            android:id="@+id/searchview_kg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints"
-            />
+        android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/entitylist"
+            android:id="@+id/scholar_list"
             android:scrollbars="vertical"
             />
 
