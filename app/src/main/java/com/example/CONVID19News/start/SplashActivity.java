@@ -106,70 +106,70 @@ public class SplashActivity extends Activity {
 //                }
 //            }
 //        }.start();
+
+        new Thread() {
+            @Override
+            public void run() {
+//线程要执行的任务
+                super.run();
+
+                //各国各省数据
+                Url cou = new Url();
+                String xcou = cou.getCountryUrl();
+                httpurl xxcou = new httpurl();
+                String datacou = xxcou.pub(xcou);
+                List<CountryModel> allModels = new ArrayList<CountryModel>();
+                List<CountryModel> countryModels = new ArrayList<CountryModel>();
+                List<CountryModel> provinceModels = new ArrayList<CountryModel>();
+                List<CountryModel> cityModels = new ArrayList<CountryModel>();
+                NewsCountryJson cy = new NewsCountryJson();
+                try {
+                    allModels = cy.jxCountry(datacou);
+                    deal tr = new deal();
+                    countryModels = tr.deal_Split(allModels, 0);
+                    provinceModels = tr.deal_Split(allModels, 1);
+                    cityModels = tr.deal_Split(allModels, 2);
+//                    for (int i = 0; i <countryModels.size() ; i++) {
+//                        System.out.println(countryModels.get(i).toString());
+//                    }
+//                    for (int i = 0; i < provinceModels.size(); i++) {
+//                        System.out.println(provinceModels.get(i).toString());
+//                    }
+//                    for (int i = 0; i < cityModels.size(); i++) {
+//                        System.out.println(cityModels.get(i).toString());
+//                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                myData.setCountry(provinceModels);
+                myData.setChina(countryModels);
+
+            }
+        }.start();
 //
-//        new Thread() {
-//            @Override
-//            public void run() {
-////线程要执行的任务
-//                super.run();
-//
-//                //各国各省数据
-//                Url cou = new Url();
-//                String xcou = cou.getCountryUrl();
-//                httpurl xxcou = new httpurl();
-//                String datacou = xxcou.pub(xcou);
-//                List<CountryModel> allModels = new ArrayList<CountryModel>();
-//                List<CountryModel> countryModels = new ArrayList<CountryModel>();
-//                List<CountryModel> provinceModels = new ArrayList<CountryModel>();
-//                List<CountryModel> cityModels = new ArrayList<CountryModel>();
-//                NewsCountryJson cy = new NewsCountryJson();
-//                try {
-//                    allModels = cy.jxCountry(datacou);
-//                    deal tr = new deal();
-//                    countryModels = tr.deal_Split(allModels, 0);
-//                    provinceModels = tr.deal_Split(allModels, 1);
-//                    cityModels = tr.deal_Split(allModels, 2);
-////                    for (int i = 0; i <countryModels.size() ; i++) {
-////                        System.out.println(countryModels.get(i).toString());
-////                    }
-////                    for (int i = 0; i < provinceModels.size(); i++) {
-////                        System.out.println(provinceModels.get(i).toString());
-////                    }
-////                    for (int i = 0; i < cityModels.size(); i++) {
-////                        System.out.println(cityModels.get(i).toString());
-////                    }
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                myData.setCountry(provinceModels);
-//                myData.setChina(countryModels);
-//
-//            }
-//        }.start();
-//
-//        new Thread() {
-//            @Override
-//            public void run() {
-//                super.run();
-//                //防疫学者
-//                Url ff=new Url();
-//                String xf=ff.getScholarUrl();
-//                httpurl xff=new httpurl();
-//                String dataf=xff.pub(xf);
-//                List<ScholarModel> scholarlist=new ArrayList <ScholarModel>();
-//                NewsScholarJson fy=new NewsScholarJson();
-//                try {
-//                    scholarlist=fy.jxScholar(dataf);
-//
-//                    for(int i=0;i<scholarlist.size();i++)
-//                        System.out.println(scholarlist.get(i).toString());
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }.start();
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                //防疫学者
+                Url ff=new Url();
+                String xf=ff.getScholarUrl();
+                httpurl xff=new httpurl();
+                String dataf=xff.pub(xf);
+                List<ScholarModel> scholarlist=new ArrayList <ScholarModel>();
+                NewsScholarJson fy=new NewsScholarJson();
+                try {
+                    scholarlist=fy.jxScholar(dataf);
+
+                    for(int i=0;i<scholarlist.size();i++)
+                        System.out.println(scholarlist.get(i).toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
 
 
 

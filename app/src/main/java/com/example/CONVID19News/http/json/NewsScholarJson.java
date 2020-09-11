@@ -18,23 +18,29 @@ public class NewsScholarJson {
 
             JSONObject jsonObject= new JSONObject(json);
             JSONArray dataJson=jsonObject.getJSONArray("data");
-            for (int i=0;i<10&&i<dataJson.length();i++)
+            for (int i=0;i<dataJson.length();i++)
             {
                 JSONObject tmp=dataJson.getJSONObject(i);
                 ScholarModel sm=new ScholarModel();
-                sm.setActivity(tmp.getString("activity"));
-                sm.setAvator(tmp.getString("avator"));
-                sm.setCitations(tmp.getString("citations"));
-                sm.setDiversity(tmp.getString("diversity"));
-                sm.setGindex(tmp.getString("gindex"));
-                sm.setHindex(tmp.getString("hindex"));
-                sm.setId(tmp.getString("id"));
-                sm.setNewStar(tmp.getString("newStar"));
-                sm.setRisingStar(tmp.getString("risingStar"));
-                sm.setSociability(tmp.getString("sociability"));
-                sm.setIs_passedaway(tmp.getString("is_passedaway"));
-                sm.setName(tmp.getString("name"));
-                sm.setName_zh(tmp.getString("name_zh"));
+                sm.setAvator(tmp.optString("avatar",""));
+                sm.setId(tmp.optString("id",""));
+                sm.setName(tmp.optString("name",""));
+                sm.setName_zh(tmp.optString("name_zh",""));
+                sm.setIs_passedaway(tmp.optString("is_passedaway",""));
+                JSONObject indices=tmp.getJSONObject("indices");
+                sm.setActivity(indices.optString("activity",""));
+                sm.setCitations(indices.optString("citations",""));
+                sm.setDiversity(indices.optString("diversity",""));
+                sm.setGindex(indices.optString("gindex",""));
+                sm.setHindex(indices.optString("hindex",""));
+                sm.setNewStar(indices.optString("newStar",""));
+                sm.setRisingStar(indices.optString("risingStar",""));
+                sm.setSociability(indices.optString("sociability",""));
+                JSONObject profile=tmp.getJSONObject("profile");
+                sm.setPosition(profile.optString("position",""));
+                sm.setBio(profile.optString("bio",""));
+                sm.setEdu(profile.optString("edu",""));
+                sm.setAffiliation(profile.optString("affiliation",""));
                 schloar.add(sm);
             }
             return schloar;

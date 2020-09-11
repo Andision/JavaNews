@@ -22,7 +22,7 @@ import java.util.List;
 public class DashboardFragment extends Fragment {
 
     private List<Fragment> fragmentList = new ArrayList<Fragment>();
-    private String[] strings = new String[]{"KG-SEARCH","T","T","T"};
+    private String[] strings = new String[]{"KGSEARCH","NCOV","T","T"};
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class DashboardFragment extends Fragment {
 
         //set viewpager---------------------------------------------
         fragmentList.add(new KGSearchFragment());
-        fragmentList.add(new ListFragment());
+        fragmentList.add(new ScholarFragment());
         fragmentList.add(new ListFragment());
         fragmentList.add(new ListFragment());
 

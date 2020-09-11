@@ -1,4 +1,7 @@
 package com.example.CONVID19News.http;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -43,6 +46,19 @@ public class httpurl {
 
         }
     return null;
+    }
+
+    public static Bitmap getBitmap(String path) throws IOException{
+        URL url = new URL(path);
+        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+        conn.setConnectTimeout(6000);
+        conn.setRequestMethod("GET");
+        if(conn.getResponseCode() == 200){
+            InputStream inputStream = conn.getInputStream();
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            return bitmap;
+        }
+        return null;
     }
 
 }

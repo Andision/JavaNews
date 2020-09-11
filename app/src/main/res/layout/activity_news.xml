@@ -42,34 +42,42 @@
         android:focusable="true"
         android:focusableInTouchMode="true">
 
-    <LinearLayout
+
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
 
-        <TextView
-                android:id="@+id/news_title"
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="300px"
-                android:textColor="#000000"
-                tools:ignore="MissingConstraints" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <TextView
-                android:id="@+id/news_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:ignore="MissingConstraints" />
 
-        <TextView
-                android:id="@+id/news_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textSize="300px"
-                tools:ignore="MissingConstraints" />
+            <TextView
+                    android:id="@+id/news_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="100px"
+                    tools:ignore="MissingConstraints" />
 
-    </LinearLayout>
+            <TextView
+                    android:id="@+id/news_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingConstraints" />
+
+            <TextView
+                    android:id="@+id/news_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="50px"
+                    tools:ignore="MissingConstraints" />
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

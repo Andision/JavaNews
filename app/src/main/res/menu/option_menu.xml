@@ -7,7 +7,7 @@
 
     <item
             android:id="@+id/menu_share"
-            android:icon="@drawable/ic_home_black_24dp"
+            android:icon="@drawable/share"
             android:title="用户"
             app:showAsAction="always" />
 </menu>

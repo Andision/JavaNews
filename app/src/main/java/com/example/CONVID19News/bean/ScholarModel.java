@@ -1,11 +1,11 @@
 package com.example.CONVID19News.bean;
 
 public class ScholarModel {
-    private String name;
-    private String name_zh;
-    private String id;
-    private String avator;
-    private String activity;
+    private String name;//英文名
+    private String name_zh;//中文名
+    private String id;//id 唯一标识符
+    private String avator;//学者头像的地址
+    private String activity;//
     private String citations;
     private String diversity;
     private String gindex;
@@ -14,6 +14,10 @@ public class ScholarModel {
     private String risingStar;
     private String sociability;//好多是int   想知道有没有必要，，还有能不能全用String型，感觉可能会方便打印。
     private String is_passedaway;//boolean
+    private String position;
+    private String bio;
+    private String edu;
+    private String affiliation;
 
     public ScholarModel(){}
 
@@ -77,35 +81,69 @@ public class ScholarModel {
     public void setNewStar(String newStar1){
         this.newStar=newStar1;
     }
-    public String getRisingStar(){
-        return risingStar;
+
+    public String getBio() {
+        return bio;
     }
-    public void setRisingStar(String risingStar1){this.risingStar=risingStar1;}
-    public String getSociability(){
-        return sociability;
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
-    public void setSociability(String sociability1){this.sociability=sociability1;}
-    public String getIs_passedaway(){
+
+
+    public String getIs_passedaway() {
         return is_passedaway;
     }
-    public void setIs_passedaway(String is_passedaway1){this.is_passedaway=is_passedaway1;}
 
-    @Override
-    public String toString() {
-        return "ScholarModel{" +
-                "name='" + name + '\'' +
-                ", name_zh='" + name_zh + '\'' +
-                ", id='" + id + '\'' +
-                ", avator='" + avator + '\'' +
-                ", activity='" + activity + '\'' +
-                ", citations='" + citations + '\'' +
-                ", diversity='" + diversity + '\'' +
-                ", gindex='" + gindex + '\'' +
-                ", hindex='" + hindex + '\'' +
-                ", newStar='" + newStar + '\'' +
-                ", risingStar='" + risingStar + '\'' +
-                ", sociability='" + sociability + '\'' +
-                ", is_passedaway='" + is_passedaway + '\'' +
-                '}';
+    public void setIs_passedaway(String is_passedaway) {
+        this.is_passedaway = is_passedaway;
+    }
+
+    public String getRisingStar() {
+        return risingStar;
+    }
+
+    public void setRisingStar(String risingStar) {
+        this.risingStar = risingStar;
+    }
+
+    public String getSociability() {
+        return sociability;
+    }
+
+    public void setSociability(String sociability) {
+        this.sociability = sociability;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getAffiliation() {
+        return affiliation;
+    }
+
+    public void setAffiliation(String affiliation) {
+        this.affiliation = affiliation;
+    }
+
+    public String getEdu() {
+        return edu;
+    }
+
+    public void setEdu(String edu) {
+        this.edu = edu;
+    }
+
+    public  String toString(){
+
+        String xx= avator+"           " +id+"         "+activity+"     "+citations+"   "+diversity+"    "+gindex+"      "+hindex+"     "+newStar+"    "+risingStar+"     "+sociability+"      "+name+"      "+name_zh+"     "+position+"       "+affiliation+"    "+bio+"     "+edu+"   "+is_passedaway+"       ";
+
+
+        return xx;
     }
 }

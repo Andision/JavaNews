@@ -1,6 +1,7 @@
 package com.example.CONVID19News.news;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.CONVID19News.R;
 
 public class NewsActivity extends AppCompatActivity {
+
+    private String shareText="";
 
 
     //重写此方法在Activity中使用菜单
@@ -31,8 +34,12 @@ public class NewsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //通过item.getItemId()来判断我们点击的是哪一个菜单项
-        Toast.makeText(this, "You Click Menu", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "You Click Menu", Toast.LENGTH_SHORT).show();
 
+        Intent textIntent = new Intent(Intent.ACTION_SEND);
+        textIntent.setType("text/plain");
+        textIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+        startActivity(Intent.createChooser(textIntent, "分享"));
         return true;
     }
 
@@ -47,12 +54,16 @@ public class NewsActivity extends AppCompatActivity {
         TextView news_title = findViewById(R.id.news_title);
 //        news_title.setText("显示NEWS_TITLE");
         news_title.setText(bundle.getString("title"));
+        shareText+=bundle.getString("title")+"\n";
 
         TextView news_info = findViewById(R.id.news_info);
-        news_info.setText(bundle.getString("date")+"    "+bundle.getString("from"));
+        news_info.setText("\n"+bundle.getString("date")+"    "+bundle.getString("from")+"\n");
+        shareText+=bundle.getString("date")+"    "+bundle.getString("from")+"\n";
 
         TextView news_text = findViewById(R.id.news_text);
-        news_text.setText(bundle.getString("content"));
+        news_text.setText("    "+bundle.getString("content"));
+        shareText+="    "+bundle.getString("content")+"\n";
+
 
 
 //        ActionBar actionBar=getSupportActionBar();

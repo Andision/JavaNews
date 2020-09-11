@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -23,14 +22,14 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KGSearchFragment extends Fragment{
+public class ScholarFragment extends Fragment{
     private List<AtlasModel> fruitList = new ArrayList<>();
 
     String myType;
     KGEntityAdapter adapter;
     RecyclerView recyclerView;
 
-    public KGSearchFragment() {
+    public ScholarFragment() {
         // Required empty public constructor
     }
 
