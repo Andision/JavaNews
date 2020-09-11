@@ -7,27 +7,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.CONVID19News.R;
-import com.example.CONVID19News.database.DatabaseHelper;
-import com.example.CONVID19News.myData;
-import com.example.CONVID19News.news.NewsActivity;
-import com.google.android.flexbox.FlexboxLayout;
+import com.example.CONVID19News.background.bean.database.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -8,18 +8,14 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageSwitcher;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.CONVID19News.R;
-import com.example.CONVID19News.bean.AtlasModel;
-import com.example.CONVID19News.bean.ScholarModel;
-import com.example.CONVID19News.http.httpurl;
-import com.example.CONVID19News.news.NewsActivity;
+import com.example.CONVID19News.background.bean.ScholarModel;
+import com.example.CONVID19News.background.bean.http.httpurl;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.CONVID19News.http;
+package com.example.CONVID19News.background.bean.http;
 
 public class Url {
     //新闻和论文列表

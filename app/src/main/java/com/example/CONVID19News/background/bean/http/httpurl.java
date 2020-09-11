@@ -1,4 +1,4 @@
-package com.example.CONVID19News.http;
+package com.example.CONVID19News.background.bean.http;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -6,12 +6,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.io.*;
-import java.net.*;
+
 public class httpurl {
 
     public  String pub(String urlStr)

@@ -1,16 +1,11 @@
-package com.example.CONVID19News.news;
+package com.example.CONVID19News.ui.news;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CONVID19News.R;

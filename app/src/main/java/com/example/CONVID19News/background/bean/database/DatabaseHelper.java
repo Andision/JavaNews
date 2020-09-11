@@ -1,4 +1,4 @@
-package com.example.CONVID19News.database;
+package com.example.CONVID19News.background.bean.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -12,15 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.CONVID19News.R;
-import com.example.CONVID19News.bean.AtlasModel;
-import com.example.CONVID19News.bean.ScholarModel;
-import com.example.CONVID19News.http.Url;
-import com.example.CONVID19News.http.httpurl;
-import com.example.CONVID19News.http.json.NewsAtlasJson;
-import com.example.CONVID19News.http.json.NewsScholarJson;
+import com.example.CONVID19News.background.bean.ScholarModel;
 import com.example.CONVID19News.myData;
-
-import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,18 +1,16 @@
-package com.example.CONVID19News.http.json;
+package com.example.CONVID19News.background.bean.http.json;
 
 
-import com.example.CONVID19News.bean.AtlasModel;
-import com.example.CONVID19News.bean.NewslistModel;
-import com.example.CONVID19News.bean.Properties;
-import com.example.CONVID19News.bean.Relations;
+import com.example.CONVID19News.background.bean.AtlasModel;
+import com.example.CONVID19News.background.bean.Properties;
+import com.example.CONVID19News.background.bean.Relations;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
-import org.json.JSONException;
+
 public class NewsAtlasJson {
     public List<AtlasModel> jxAtlas(String json)throws JSONException{
         List<AtlasModel> atlaslist=new ArrayList<AtlasModel>();

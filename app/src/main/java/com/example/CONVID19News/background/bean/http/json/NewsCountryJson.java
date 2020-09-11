@@ -1,14 +1,13 @@
-package com.example.CONVID19News.http.json;
+package com.example.CONVID19News.background.bean.http.json;
 
-import com.example.CONVID19News.bean.CountryModel;
-import com.example.CONVID19News.bean.timedata;
+import com.example.CONVID19News.background.bean.CountryModel;
+import com.example.CONVID19News.background.bean.timedata;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
-import org.json.JSONException;
+
 public class NewsCountryJson {
     public List<CountryModel> jxCountry(String json) throws JSONException{
         List<CountryModel> countryModelList=new ArrayList<CountryModel>();

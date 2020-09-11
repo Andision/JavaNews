@@ -1,14 +1,12 @@
-package com.example.CONVID19News.http.json;
-import com.example.CONVID19News.bean.NewslistModel;
-import com.example.CONVID19News.bean.ScholarModel;
+package com.example.CONVID19News.background.bean.http.json;
+import com.example.CONVID19News.background.bean.ScholarModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
-import org.json.JSONException;
+
 public class NewsScholarJson {
     public List<ScholarModel> jxScholar(String json) throws JSONException {
         List<ScholarModel> schloar=new ArrayList<ScholarModel>();

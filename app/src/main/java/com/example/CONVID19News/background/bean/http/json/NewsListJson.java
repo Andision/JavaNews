@@ -1,13 +1,11 @@
-package com.example.CONVID19News.http.json;
-import com.example.CONVID19News.bean.NewslistModel;
+package com.example.CONVID19News.background.bean.http.json;
+import com.example.CONVID19News.background.bean.NewslistModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
-import org.json.JSONException;
 
 public class NewsListJson
 {

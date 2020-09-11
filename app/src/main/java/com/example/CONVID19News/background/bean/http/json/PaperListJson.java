@@ -1,13 +1,10 @@
-package com.example.CONVID19News.http.json;
-import com.example.CONVID19News.bean.NewslistModel;
-import com.example.CONVID19News.bean.PaperlistModel;
+package com.example.CONVID19News.background.bean.http.json;
+import com.example.CONVID19News.background.bean.PaperlistModel;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
-import org.json.JSONException;
 
 public class PaperListJson {
     public List<PaperlistModel>jxPaperlist(String json)throws JSONException{

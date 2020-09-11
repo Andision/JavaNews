@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -16,10 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.CONVID19News.R;
-import com.example.CONVID19News.bean.AtlasModel;
-import com.example.CONVID19News.http.Url;
-import com.example.CONVID19News.http.httpurl;
-import com.example.CONVID19News.http.json.NewsAtlasJson;
+import com.example.CONVID19News.background.bean.AtlasModel;
+import com.example.CONVID19News.background.bean.http.Url;
+import com.example.CONVID19News.background.bean.http.httpurl;
+import com.example.CONVID19News.background.bean.http.json.NewsAtlasJson;
 
 import org.json.JSONException;
 

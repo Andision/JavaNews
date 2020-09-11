@@ -1,4 +1,4 @@
-package com.example.CONVID19News.bean;
+package com.example.CONVID19News.background.bean;
 
 public class Relations {
     private String relation;

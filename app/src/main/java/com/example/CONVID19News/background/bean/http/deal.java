@@ -1,6 +1,6 @@
-package com.example.CONVID19News.http;
+package com.example.CONVID19News.background.bean.http;
 
-import com.example.CONVID19News.bean.CountryModel;
+import com.example.CONVID19News.background.bean.CountryModel;
 
 import java.util.ArrayList;
 import java.util.List;

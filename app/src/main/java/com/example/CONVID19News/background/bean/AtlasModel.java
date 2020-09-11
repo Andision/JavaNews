@@ -1,7 +1,6 @@
-package com.example.CONVID19News.bean;
+package com.example.CONVID19News.background.bean;
 
 import java.util.List;
-import com.example.CONVID19News.bean.Properties;
 
 public class AtlasModel {
     private String data_url;

@@ -1,19 +1,16 @@
 package com.example.CONVID19News.ui.dashboard;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CONVID19News.R;
-import com.example.CONVID19News.http.httpurl;
+import com.example.CONVID19News.background.bean.http.httpurl;
 
 import java.io.IOException;
 

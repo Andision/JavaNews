@@ -1,39 +1,30 @@
 package com.example.CONVID19News.ui.home;
 
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.CONVID19News.R;
-import com.example.CONVID19News.bean.NewslistModel;
-import com.example.CONVID19News.bean.PaperlistModel;
-import com.example.CONVID19News.database.DatabaseHelper;
-import com.example.CONVID19News.http.Url;
-import com.example.CONVID19News.http.httpurl;
-import com.example.CONVID19News.http.json.NewsListJson;
-import com.example.CONVID19News.http.json.PaperListJson;
+import com.example.CONVID19News.background.bean.NewslistModel;
+import com.example.CONVID19News.background.bean.PaperlistModel;
+import com.example.CONVID19News.background.bean.database.DatabaseHelper;
+import com.example.CONVID19News.background.bean.http.Url;
+import com.example.CONVID19News.background.bean.http.httpurl;
+import com.example.CONVID19News.background.bean.http.json.NewsListJson;
+import com.example.CONVID19News.background.bean.http.json.PaperListJson;
 import com.example.CONVID19News.myData;
 //import com.example.newtest0903.news.NewsActivity;
 

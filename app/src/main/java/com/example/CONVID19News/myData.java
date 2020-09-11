@@ -1,10 +1,8 @@
 package com.example.CONVID19News;
 
-import androidx.fragment.app.Fragment;
-
-import com.example.CONVID19News.bean.AtlasModel;
-import com.example.CONVID19News.bean.CountryModel;
-import com.example.CONVID19News.bean.ScholarModel;
+import com.example.CONVID19News.background.bean.AtlasModel;
+import com.example.CONVID19News.background.bean.CountryModel;
+import com.example.CONVID19News.background.bean.ScholarModel;
 
 import java.util.ArrayList;
 import java.util.List;

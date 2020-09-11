@@ -3,30 +3,20 @@ package com.example.CONVID19News.ui.notifications;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.bin.david.form.annotation.SmartColumn;
 import com.bin.david.form.core.SmartTable;
 import com.bin.david.form.data.column.Column;
 import com.bin.david.form.data.table.TableData;
 import com.example.CONVID19News.R;
-import com.example.CONVID19News.bean.CountryModel;
-import com.example.CONVID19News.bean.timedata;
+import com.example.CONVID19News.background.bean.CountryModel;
+import com.example.CONVID19News.background.bean.timedata;
 import com.example.CONVID19News.myData;
-import com.example.CONVID19News.ui.home.Fruit;
-import com.example.CONVID19News.ui.home.FruitAdapter;
-import com.example.CONVID19News.ui.home.HomeFragment;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;

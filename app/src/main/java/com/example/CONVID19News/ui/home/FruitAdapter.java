@@ -5,18 +5,15 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Html;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -24,10 +21,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import java.util.List;
 
 import com.example.CONVID19News.R;
-import com.example.CONVID19News.bean.NewslistModel;
-import com.example.CONVID19News.bean.PaperlistModel;
-import com.example.CONVID19News.database.DatabaseHelper;
-import com.example.CONVID19News.news.NewsActivity;
+import com.example.CONVID19News.background.bean.NewslistModel;
+import com.example.CONVID19News.background.bean.PaperlistModel;
+import com.example.CONVID19News.ui.news.NewsActivity;
 
 public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> {
 

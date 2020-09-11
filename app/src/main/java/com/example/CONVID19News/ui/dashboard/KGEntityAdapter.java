@@ -16,15 +16,10 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.CONVID19News.R;
-import com.example.CONVID19News.bean.AtlasModel;
-import com.example.CONVID19News.http.Url;
-import com.example.CONVID19News.http.httpurl;
-import com.example.CONVID19News.http.json.NewsAtlasJson;
-
-import org.json.JSONException;
+import com.example.CONVID19News.background.bean.AtlasModel;
+import com.example.CONVID19News.background.bean.http.httpurl;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class KGEntityAdapter extends RecyclerView.Adapter<KGEntityAdapter.ViewHolder> {

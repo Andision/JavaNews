@@ -1,4 +1,4 @@
-package com.example.CONVID19News.start;
+package com.example.CONVID19News.ui.start;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -11,20 +11,18 @@ import android.view.Window;
 
 import com.example.CONVID19News.MainActivity;
 import com.example.CONVID19News.R;
-import com.example.CONVID19News.bean.AtlasModel;
-import com.example.CONVID19News.bean.CountryModel;
-import com.example.CONVID19News.bean.NewslistModel;
-import com.example.CONVID19News.bean.PaperlistModel;
-import com.example.CONVID19News.bean.ScholarModel;
-import com.example.CONVID19News.database.DatabaseHelper;
-import com.example.CONVID19News.http.Url;
-import com.example.CONVID19News.http.deal;
-import com.example.CONVID19News.http.httpurl;
-import com.example.CONVID19News.http.json.NewsAtlasJson;
-import com.example.CONVID19News.http.json.NewsCountryJson;
-import com.example.CONVID19News.http.json.NewsListJson;
-import com.example.CONVID19News.http.json.NewsScholarJson;
-import com.example.CONVID19News.http.json.PaperListJson;
+import com.example.CONVID19News.background.bean.CountryModel;
+import com.example.CONVID19News.background.bean.NewslistModel;
+import com.example.CONVID19News.background.bean.PaperlistModel;
+import com.example.CONVID19News.background.bean.ScholarModel;
+import com.example.CONVID19News.background.bean.database.DatabaseHelper;
+import com.example.CONVID19News.background.bean.http.Url;
+import com.example.CONVID19News.background.bean.http.deal;
+import com.example.CONVID19News.background.bean.http.httpurl;
+import com.example.CONVID19News.background.bean.http.json.NewsCountryJson;
+import com.example.CONVID19News.background.bean.http.json.NewsListJson;
+import com.example.CONVID19News.background.bean.http.json.NewsScholarJson;
+import com.example.CONVID19News.background.bean.http.json.PaperListJson;
 import com.example.CONVID19News.myData;
 
 import org.json.JSONException;
