@@ -33,16 +33,15 @@
 
             <TextView
                     android:id="@+id/entitywiki"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingBottom="30px"
                     android:text="BINGDU IS NOT GOOD"
-                    android:textSize="20dp" />
+                    android:layout_weight="1"
+                    />
 
             <ImageView
                     android:id="@+id/entityimage"
-                    android:layout_width="wrap_content"
+                    android:layout_width="500px"
                     android:layout_height="wrap_content"
                     android:src="@drawable/virus"
                     />

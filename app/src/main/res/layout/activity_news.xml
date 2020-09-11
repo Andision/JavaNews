@@ -51,6 +51,8 @@
                 android:id="@+id/news_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="300px"
+                android:textColor="#000000"
                 tools:ignore="MissingConstraints" />
 
         <TextView
@@ -63,6 +65,8 @@
                 android:id="@+id/news_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="300px"
                 tools:ignore="MissingConstraints" />
 
     </LinearLayout>

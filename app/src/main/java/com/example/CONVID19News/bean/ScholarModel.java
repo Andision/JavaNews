@@ -90,4 +90,22 @@ public class ScholarModel {
     }
     public void setIs_passedaway(String is_passedaway1){this.is_passedaway=is_passedaway1;}
 
+    @Override
+    public String toString() {
+        return "ScholarModel{" +
+                "name='" + name + '\'' +
+                ", name_zh='" + name_zh + '\'' +
+                ", id='" + id + '\'' +
+                ", avator='" + avator + '\'' +
+                ", activity='" + activity + '\'' +
+                ", citations='" + citations + '\'' +
+                ", diversity='" + diversity + '\'' +
+                ", gindex='" + gindex + '\'' +
+                ", hindex='" + hindex + '\'' +
+                ", newStar='" + newStar + '\'' +
+                ", risingStar='" + risingStar + '\'' +
+                ", sociability='" + sociability + '\'' +
+                ", is_passedaway='" + is_passedaway + '\'' +
+                '}';
+    }
 }

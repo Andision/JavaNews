@@ -82,8 +82,8 @@ public class KGEntityAdapter extends RecyclerView.Adapter<KGEntityAdapter.ViewHo
 
 
 
-        linearLayout = new LinearLayout(holder.propertyContainer.getContext());
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout linearLayout1 = new LinearLayout(holder.relationContainer.getContext());
+        linearLayout1.setOrientation(LinearLayout.VERTICAL);
         for (int i = 0; i < fruit.getProperties().size(); i++) {
 
 
@@ -91,13 +91,16 @@ public class KGEntityAdapter extends RecyclerView.Adapter<KGEntityAdapter.ViewHo
             child.setTextSize(20);
 //        child.setTextColor(getResources().getColor(R.color.colorAccent));
             // 获取当前的时间并转换为时间戳格式, 并设置给TextView
-            String currentTime = fruit.getProperties().get(i).getSxmc()+"         "+fruit.getProperties().get(i).getSxz();
+
+            String fs=fruit.getProperties().get(i).getSxmc();
+            if(fs=="null")continue;
+            String currentTime = fs+"         "+fruit.getProperties().get(i).getSxz();
             child.setText(currentTime);
             // 调用一个参数的addView方法
 
-            linearLayout.addView(child);
+            linearLayout1.addView(child);
         }
-        holder.relationContainer.addView(linearLayout);
+        holder.propertyContainer.addView(linearLayout1);
 
 
 
