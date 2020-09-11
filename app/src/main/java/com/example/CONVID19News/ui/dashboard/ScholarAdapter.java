@@ -78,7 +78,7 @@ public class ScholarAdapter extends RecyclerView.Adapter<ScholarAdapter.ViewHold
                         }
                     });
 
-                    final Bitmap bm= httpurl.getBitmap(fruit.getAvator());
+                    final Bitmap bm = httpurl.getBitmap(fruit.getAvator());
 
 
                     new Handler(Looper.getMainLooper()).post(new Runnable() {

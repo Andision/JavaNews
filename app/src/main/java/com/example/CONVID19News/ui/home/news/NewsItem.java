@@ -1,4 +1,4 @@
-package com.example.CONVID19News.ui.news;
+package com.example.CONVID19News.ui.home.news;
 
 import android.webkit.JavascriptInterface;
 

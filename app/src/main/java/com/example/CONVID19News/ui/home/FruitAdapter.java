@@ -23,7 +23,7 @@ import java.util.List;
 import com.example.CONVID19News.R;
 import com.example.CONVID19News.background.bean.NewslistModel;
 import com.example.CONVID19News.background.bean.PaperlistModel;
-import com.example.CONVID19News.ui.news.NewsActivity;
+import com.example.CONVID19News.ui.home.news.NewsActivity;
 
 public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> {
 

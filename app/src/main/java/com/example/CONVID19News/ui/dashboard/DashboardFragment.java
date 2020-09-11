@@ -22,7 +22,7 @@ import java.util.List;
 public class DashboardFragment extends Fragment {
 
     private List<Fragment> fragmentList = new ArrayList<Fragment>();
-    private String[] strings = new String[]{"图谱搜索","高关注学者","追忆学者","T"};
+    private String[] strings = new String[]{"高关注学者","追忆学者","图谱搜索","聚类"};
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -30,9 +30,9 @@ public class DashboardFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
 
         //set viewpager---------------------------------------------
-        fragmentList.add(new KGSearchFragment());
         fragmentList.add(new ScholarFragment(false));
         fragmentList.add(new ScholarFragment(true));
+        fragmentList.add(new KGSearchFragment());
         fragmentList.add(new ListFragment());
 
         TabLayout tab_layout = root.findViewById(R.id.tab_layout);
