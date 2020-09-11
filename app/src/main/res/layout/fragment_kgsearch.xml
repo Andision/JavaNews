@@ -6,18 +6,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView"
+    <SearchView
+            android:id="@+id/searchview_kg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AutoCompleteTextView"
             tools:ignore="MissingConstraints"
-            android:maxLines="1"
             />
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/entitylist"
             android:scrollbars="vertical"
             />

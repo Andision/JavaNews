@@ -2,6 +2,7 @@ package com.example.CONVID19News;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.CONVID19News.bean.AtlasModel;
 import com.example.CONVID19News.bean.CountryModel;
 
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ public class myData{
     private static int paperpage=0;
     private static List<CountryModel>provinceModels;
     private static List<CountryModel>ChinaModels;
+
+    private List<AtlasModel> amlist = new ArrayList<>();
 
     private static myData instance = new myData();
 

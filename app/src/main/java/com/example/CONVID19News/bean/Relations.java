@@ -38,5 +38,14 @@ public class Relations {
         this.dt_url = dt_url;
     }
 
+    @Override
+    public String toString() {
+        return "Relations{" +
+                "relation='" + relation + '\'' +
+                ", dt_url='" + dt_url + '\'' +
+                ", dt_label='" + dt_label + '\'' +
+                ", forward='" + forward + '\'' +
+                '}';
+    }
 }
 

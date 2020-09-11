@@ -1,6 +1,7 @@
 package com.example.CONVID19News.bean;
 
 import java.util.List;
+import com.example.CONVID19News.bean.Properties;
 
 public class AtlasModel {
     private String data_url;
@@ -9,7 +10,8 @@ public class AtlasModel {
     private String  baidu;
     private String  zhwiki;
     private List<Relations> relations;
-   private String property;
+//   private String property;
+   private List<Properties> properties;
     private String img;
 
     public String getBaidu() {
@@ -44,13 +46,13 @@ public class AtlasModel {
         this.label = label;
     }
 
-    public String getProperty() {
-        return property;
-    }
+//    public String getProperty() {
+//        return property;
+//    }
 
-    public void setProperty(String property) {
-        this.property = property;
-    }
+//    public void setProperty(String property) {
+//        this.property = property;
+//    }
 
 
     public String getData_url() {
@@ -76,9 +78,22 @@ public class AtlasModel {
     public void setRelations(List<Relations> relations) {
         this.relations = relations;
     }
+
+    public List<Properties> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(List<Properties> properties) {
+        this.properties = properties;
+    }
+
     public  String toString(){
 
-        String xx= data_url+"           " +label+"         "+data_url+"     "+enwiki+"   "+baidu+"    "+zhwiki+"   "+property+"      ";
+        String xx= data_url+"           " +label+"         "+data_url+"     "+enwiki+"   "+baidu+"    "+zhwiki+"      ";
+
+        for (int j = 0; j <properties.size() ; j++) {
+            xx+=properties.get(j).getSxmc()+"   "+properties.get(j).getSxz()+"    ";
+        }
         for (int i = 0; i <relations.size() ; i++) {
             xx+=relations.get(i).getRelation()+"       "+relations.get(i).getDt_url()+"      "+relations.get(i).getDt_label()+"    "+relations.get(i).getForward()+"    ";
             xx+= "      ";

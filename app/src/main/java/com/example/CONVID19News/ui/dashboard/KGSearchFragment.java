@@ -5,9 +5,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,16 +21,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.CONVID19News.R;
+import com.example.CONVID19News.bean.AtlasModel;
 import com.example.CONVID19News.bean.NewslistModel;
 import com.example.CONVID19News.bean.PaperlistModel;
 import com.example.CONVID19News.database.DatabaseHelper;
 import com.example.CONVID19News.http.Url;
 import com.example.CONVID19News.http.httpurl;
+import com.example.CONVID19News.http.json.NewsAtlasJson;
 import com.example.CONVID19News.http.json.NewsListJson;
 import com.example.CONVID19News.http.json.PaperListJson;
 import com.example.CONVID19News.myData;
 import com.example.CONVID19News.ui.home.Fruit;
 import com.example.CONVID19News.ui.home.FruitAdapter;
+import com.example.CONVID19News.ui.home.SearchHistoryAdapter;
 import com.example.CONVID19News.ui.notifications.KGEntity;
 import com.example.CONVID19News.ui.notifications.KGEntityAdapter;
 
@@ -36,9 +43,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KGSearchFragment extends Fragment{
-    private List<KGEntity> fruitList = new ArrayList<>();
+    private List<AtlasModel> fruitList = new ArrayList<>();
 
     String myType;
+    KGEntityAdapter adapter;
 
     public KGSearchFragment() {
         // Required empty public constructor
@@ -56,8 +64,26 @@ public class KGSearchFragment extends Fragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_kgsearch, container, false);
 
+
+        SearchView searchView=view.findViewById(R.id.searchview_kg);
+        searchView.setIconifiedByDefault(false);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                Toast.makeText(getActivity(), "Your Input: " + s, Toast.LENGTH_SHORT).show();
+
+                addNewEntity(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
         //set newslist------------------------------------------------------
-        initFruits();
+//        initFruits();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.entitylist);
         recyclerView.setHasFixedSize(true);
 
@@ -67,7 +93,7 @@ public class KGSearchFragment extends Fragment{
 
 //        SQLiteOpenHelper dbHelper = new DatabaseHelper(getActivity(), "mydatabase", null, 1);
 //        final SQLiteDatabase sqliteDatabase = dbHelper.getWritableDatabase();
-        final KGEntityAdapter adapter = new KGEntityAdapter(fruitList);
+        adapter = new KGEntityAdapter(fruitList);
         recyclerView.setAdapter(adapter);
 //
 //        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -165,11 +191,38 @@ public class KGSearchFragment extends Fragment{
         return view;
     }
 
-    private void initFruits() {
-        for(int i=0;i<10;i++){
-            KGEntity kge=new KGEntity("KGE:"+i);
-            fruitList.add(kge);
-        }
+    private void addNewEntity(final String sw) {
+        adapter.insertClear();
+
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+//新闻图谱
+                Url aa=new Url();
+                String xa=aa.getAtlasUrl(sw);
+                httpurl xaa=new httpurl();
+                String dataa=xaa.pub(xa);
+                List<AtlasModel> atlasModelslist=new ArrayList <AtlasModel>();
+                NewsAtlasJson ay=new NewsAtlasJson();
+                try {
+                    atlasModelslist=ay.jxAtlas(dataa);
+                    for (int i=0;i<atlasModelslist.size();i++)
+                    {
+                        AtlasModel am=atlasModelslist.get(i);
+                        System.out.println(atlasModelslist.get(i).toString());
+
+                        adapter.insertNew(am);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                adapter.insertFinish();
+            }
+        }.start();
+
+
 
     }
 

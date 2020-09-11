@@ -3,6 +3,7 @@ package com.example.CONVID19News.http.json;
 
 import com.example.CONVID19News.bean.AtlasModel;
 import com.example.CONVID19News.bean.NewslistModel;
+import com.example.CONVID19News.bean.Properties;
 import com.example.CONVID19News.bean.Relations;
 
 import org.json.JSONArray;
@@ -31,7 +32,29 @@ public class NewsAtlasJson {
                 nm.setBaidu(abst.getString("baidu"));
                 nm.setZhwiki(abst.getString("zhwiki"));
                 JSONObject covid=abst.getJSONObject("COVID");
-                nm.setProperty(covid.getString("properties"));
+
+               // nm.setProperty(covid.getString("properties"));
+                JSONObject pp=covid.getJSONObject("properties");
+                if(pp.length()!=0){
+                JSONArray pplist=pp.names();
+                List<Properties> pre=new ArrayList<Properties>();
+                for (int k = 0; k <pplist.length() ; k++) {
+                    Properties tppd=new Properties();
+                    tppd.setSxmc(pplist.getString(k));
+                    tppd.setSxz(pp.getString(pplist.getString(k)));
+                    pre.add(tppd);
+                }
+                nm.setProperties(pre);
+                }
+                else {
+                    List<Properties> pre=new ArrayList<Properties>();
+                    Properties tppd=new Properties();
+                    tppd.setSxmc("null");
+                    tppd.setSxz("null");
+                    pre.add(tppd);
+                    nm.setProperties(pre);
+
+                }
                 JSONArray tat=covid.getJSONArray("relations");
                 List<Relations> rea=new ArrayList<Relations>();
                 for (int j = 0; j <tat.length() ; j++) {
